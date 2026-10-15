@@ -12,17 +12,17 @@
 
 ## Phase 0 --- Project Setup
 
--   [ ] Create repository structure for frontend and backend.
--   [ ] Configure TypeScript, linting, formatting, and environment
+-   [x] Create repository structure for frontend and backend.
+-   [x] Configure TypeScript, linting, formatting, and environment
     configuration.
--   [ ] Set up React + Vite frontend.
--   [ ] Set up Express + TypeScript backend.
--   [ ] Configure Prisma with SQLite.
--   [ ] Add root development scripts to run frontend and backend
+-   [x] Set up React + Vite frontend.
+-   [x] Set up Express + TypeScript backend.
+-   [x] Configure Prisma with SQLite.
+-   [x] Add root development scripts to run frontend and backend
     together.
--   [ ] Add `.env.example` containing placeholders only; never commit
+-   [x] Add `.env.example` containing placeholders only; never commit
     secrets.
--   [ ] Add README with development setup and run instructions.
+-   [x] Add README with development setup and run instructions.
 
 **Acceptance criteria** - Frontend and backend start locally using
 documented commands. - TypeScript checks pass. - No secrets or local
@@ -30,21 +30,21 @@ database files are committed.
 
 ## Phase 1 --- Database and API Foundation
 
--   [ ] Define Prisma models for `Internship`, `StatusHistory`,
+-   [x] Define Prisma models for `Internship`, `StatusHistory`,
     `GmailAccount`, `ProcessedEmail`, and `AppSettings`.
--   [ ] Define internship statuses: `APPLIED`, `TEST`, `INTERVIEW`,
+-   [x] Define internship statuses: `APPLIED`, `TEST`, `INTERVIEW`,
     `NEXT_STEP`.
--   [ ] Add migrations and seed/setup instructions.
--   [ ] Implement centralized request validation and error handling.
--   [ ] Implement health endpoint for local startup checks.
--   [ ] Implement internship list endpoint.
--   [ ] Implement create internship endpoint.
--   [ ] Implement get internship detail endpoint.
--   [ ] Implement update internship endpoint.
--   [ ] Implement delete internship endpoint.
--   [ ] Implement status history endpoint.
--   [ ] Record status history whenever an internship status changes.
--   [ ] Validate that IDs exist and reject malformed inputs.
+-   [x] Add migrations and seed/setup instructions.
+-   [x] Implement centralized request validation and error handling.
+-   [x] Implement health endpoint for local startup checks.
+-   [x] Implement internship list endpoint.
+-   [x] Implement create internship endpoint.
+-   [x] Implement get internship detail endpoint.
+-   [x] Implement update internship endpoint.
+-   [x] Implement delete internship endpoint.
+-   [x] Implement status history endpoint.
+-   [x] Record status history whenever an internship status changes.
+-   [x] Validate that IDs exist and reject malformed inputs.
 
 **Acceptance criteria** - CRUD operations persist to SQLite. -
 Restarting the backend does not remove records. - Status changes create

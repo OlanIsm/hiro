@@ -1,0 +1,110 @@
+import { prisma } from "../config/prisma.js";
+import { CreateInternshipInput, UpdateInternshipInput } from "../validation/internship.js";
+import { Internship, StatusHistory, Prisma } from "@prisma/client";
+
+export class InternshipRepository {
+  async findAll(): Promise<Internship[]> {
+    return prisma.internship.findMany({
+      orderBy: { updatedAt: "desc" },
+    });
+  }
+
+  async findById(id: string): Promise<Internship | null> {
+    return prisma.internship.findUnique({
+      where: { id },
+    });
+  }
+
+  async create(data: CreateInternshipInput): Promise<Internship> {
+    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      const skillsJson = JSON.stringify(data.skills || []);
+
+      const internship = await tx.internship.create({
+        data: {
+          companyName: data.companyName,
+          role: data.role,
+          jobDescription: data.jobDescription,
+          skills: skillsJson,
+          status: data.status,
+          appliedAt: data.appliedAt || new Date(),
+          jobUrl: data.jobUrl,
+          recruiterEmail: data.recruiterEmail,
+          notes: data.notes,
+          nextAction: data.nextAction,
+          deadline: data.deadline,
+        },
+      });
+
+      // Initial status history record
+      await tx.statusHistory.create({
+        data: {
+          internshipId: internship.id,
+          previousStatus: null,
+          newStatus: internship.status,
+          source: "MANUAL",
+        },
+      });
+
+      return internship;
+    });
+  }
+
+  async updateWithStatusHistory(
+    id: string,
+    existingStatus: string,
+    data: UpdateInternshipInput,
+    source: string = "MANUAL",
+    relatedEmailId?: string | null
+  ): Promise<Internship> {
+    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      const updateData: Prisma.InternshipUpdateInput = {};
+
+      if (data.companyName !== undefined) updateData.companyName = data.companyName;
+      if (data.role !== undefined) updateData.role = data.role;
+      if (data.jobDescription !== undefined) updateData.jobDescription = data.jobDescription;
+      if (data.skills !== undefined) updateData.skills = JSON.stringify(data.skills);
+      if (data.status !== undefined) updateData.status = data.status;
+      if (data.appliedAt !== undefined) updateData.appliedAt = data.appliedAt;
+      if (data.jobUrl !== undefined) updateData.jobUrl = data.jobUrl;
+      if (data.recruiterEmail !== undefined) updateData.recruiterEmail = data.recruiterEmail;
+      if (data.notes !== undefined) updateData.notes = data.notes;
+      if (data.nextAction !== undefined) updateData.nextAction = data.nextAction;
+      if (data.deadline !== undefined) updateData.deadline = data.deadline;
+
+      const updated = await tx.internship.update({
+        where: { id },
+        data: updateData,
+      });
+
+      // Record status change if status changed
+      if (data.status && data.status !== existingStatus) {
+        await tx.statusHistory.create({
+          data: {
+            internshipId: id,
+            previousStatus: existingStatus,
+            newStatus: data.status,
+            source,
+            relatedEmailId: relatedEmailId || null,
+          },
+        });
+      }
+
+      return updated;
+    });
+  }
+
+  async delete(id: string): Promise<Internship> {
+    return prisma.internship.delete({
+      where: { id },
+    });
+  }
+
+  async findHistoryByInternshipId(internshipId: string): Promise<StatusHistory[]> {
+    return prisma.statusHistory.findMany({
+      where: { internshipId },
+      orderBy: { changedAt: "desc" },
+    });
+  }
+}
+
+export const internshipRepository = new InternshipRepository();
