@@ -32,17 +32,17 @@ export function InternshipCard({
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.3 : 1,
-    backgroundColor: "#1e293b",
-    border: "1px solid #334155",
-    borderRadius: "8px",
-    padding: "16px",
-    marginBottom: "12px",
+    opacity: isDragging ? 0.35 : 1,
+    background: "linear-gradient(145deg, #f3f6fd, #e4e9f3)",
+    borderRadius: "20px",
+    padding: "18px",
+    marginBottom: "16px",
     cursor: "grab",
     userSelect: "none",
     boxShadow: isOverlay
-      ? "0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5)"
-      : "0 1px 3px rgba(0,0,0,0.2)",
+      ? "18px 18px 36px #b8c1d1, -18px -18px 36px #ffffff"
+      : "7px 7px 16px #cfd6e4, -7px -7px 16px #ffffff",
+    border: "1px solid rgba(255, 255, 255, 0.7)",
   };
 
   const formattedAppliedDate = new Date(internship.appliedAt).toLocaleDateString(
@@ -77,35 +77,36 @@ export function InternshipCard({
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
-        <h4 style={{ margin: 0, fontSize: "15px", fontWeight: "600", color: "#f8fafc" }}>
+        <h4 style={{ margin: 0, fontSize: "15px", fontWeight: "700", color: "#1e1b4b" }}>
           {internship.role}
         </h4>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#94a3b8", fontSize: "13px", marginBottom: "12px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#6d28d9", fontSize: "13px", fontWeight: "600", marginBottom: "12px" }}>
         <Building size={14} />
-        <span style={{ fontWeight: "500" }}>{internship.companyName}</span>
+        <span>{internship.companyName}</span>
       </div>
 
       {internship.skills && internship.skills.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginBottom: "12px" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "14px" }}>
           {internship.skills.slice(0, 4).map((skill) => (
             <span
               key={skill}
               style={{
                 fontSize: "11px",
-                backgroundColor: "#0f172a",
-                color: "#38bdf8",
-                padding: "2px 6px",
-                borderRadius: "4px",
-                border: "1px solid #1e3a5f",
+                fontWeight: "600",
+                backgroundColor: "#ede9fe",
+                color: "#7c3aed",
+                padding: "3px 8px",
+                borderRadius: "10px",
+                boxShadow: "inset 1px 1px 2px #d0d6e2, inset -1px -1px 2px #ffffff",
               }}
             >
               {skill}
             </span>
           ))}
           {internship.skills.length > 4 && (
-            <span style={{ fontSize: "11px", color: "#64748b", alignSelf: "center" }}>
+            <span style={{ fontSize: "11px", color: "#94a3b8", alignSelf: "center", fontWeight: "500" }}>
               +{internship.skills.length - 4}
             </span>
           )}
@@ -119,15 +120,15 @@ export function InternshipCard({
           alignItems: "center",
           fontSize: "11px",
           color: "#64748b",
-          borderTop: "1px solid #334155",
-          paddingTop: "8px",
+          borderTop: "1px solid rgba(207, 213, 226, 0.6)",
+          paddingTop: "10px",
         }}
       >
         <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <Calendar size={12} /> {formattedAppliedDate}
+          <Calendar size={12} color="#8b5cf6" /> {formattedAppliedDate}
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <Clock size={12} /> {formattedUpdatedAt}
+          <Clock size={12} color="#8b5cf6" /> {formattedUpdatedAt}
         </span>
       </div>
 
@@ -137,7 +138,7 @@ export function InternshipCard({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: "8px",
+            marginTop: "10px",
             paddingTop: "6px",
           }}
           onClick={(e) => e.stopPropagation()}
@@ -147,16 +148,17 @@ export function InternshipCard({
             <button
               onClick={() => onMoveToStatus(internship.id, prevColumn.id)}
               title={`Move to ${prevColumn.title}`}
+              className="neu-button"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "2px",
+                gap: "3px",
                 fontSize: "11px",
-                padding: "2px 6px",
-                borderRadius: "4px",
-                border: "1px solid #475569",
-                backgroundColor: "#0f172a",
-                color: "#cbd5e1",
+                fontWeight: "600",
+                padding: "3px 8px",
+                borderRadius: "10px",
+                border: "none",
+                color: "#64748b",
                 cursor: "pointer",
               }}
             >
@@ -170,16 +172,17 @@ export function InternshipCard({
             <button
               onClick={() => onMoveToStatus(internship.id, nextColumn.id)}
               title={`Move to ${nextColumn.title}`}
+              className="neu-button"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "2px",
+                gap: "3px",
                 fontSize: "11px",
-                padding: "2px 6px",
-                borderRadius: "4px",
-                border: "1px solid #475569",
-                backgroundColor: "#0f172a",
-                color: "#cbd5e1",
+                fontWeight: "600",
+                padding: "3px 8px",
+                borderRadius: "10px",
+                border: "none",
+                color: "#7c3aed",
                 cursor: "pointer",
               }}
             >

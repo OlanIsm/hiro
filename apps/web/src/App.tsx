@@ -11,60 +11,68 @@ function Dashboard() {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "#090d16",
-        color: "#f3f4f6",
+        backgroundColor: "#e8ecf4",
+        color: "#1e1b4b",
         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* Desktop-First Application Shell Top Navigation */}
+      {/* Desktop-First Application Shell Top Navigation (Neumorphic) */}
       <header
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "14px 28px",
-          borderBottom: "1px solid #1f2937",
-          backgroundColor: "#111827",
+          padding: "16px 36px",
+          backgroundColor: "#e8ecf4",
+          boxShadow: "0 6px 20px rgba(207, 213, 226, 0.7)",
           position: "sticky",
           top: 0,
           zIndex: 40,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "36px",
-              height: "36px",
-              borderRadius: "8px",
-              backgroundColor: "#0284c7",
+              width: "44px",
+              height: "44px",
+              borderRadius: "16px",
+              background: "linear-gradient(145deg, #8b5cf6, #7c3aed)",
+              boxShadow: "5px 5px 12px #cfd5e2, -4px -4px 10px #ffffff",
               color: "#ffffff",
             }}
           >
-            <Briefcase size={20} />
+            <Briefcase size={22} />
           </div>
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ fontSize: "18px", fontWeight: "700", color: "#f8fafc", letterSpacing: "-0.02em" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <span
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "800",
+                  color: "#5b21b6",
+                  letterSpacing: "-0.02em",
+                }}
+              >
                 Olan's Jira
               </span>
               <span
                 style={{
                   fontSize: "11px",
-                  padding: "2px 8px",
-                  backgroundColor: "#1e293b",
-                  border: "1px solid #334155",
-                  borderRadius: "9999px",
-                  color: "#38bdf8",
-                  fontWeight: "600",
+                  padding: "3px 10px",
+                  backgroundColor: "#ede9fe",
+                  borderRadius: "20px",
+                  color: "#7c3aed",
+                  fontWeight: "700",
+                  boxShadow: "inset 2px 2px 4px #cfd5e2, inset -2px -2px 4px #ffffff",
                 }}
               >
                 Local-First MVP
               </span>
             </div>
-            <div style={{ fontSize: "12px", color: "#64748b" }}>
+            <div style={{ fontSize: "12px", color: "#64748b", fontWeight: "500" }}>
               Internship Application Tracker
             </div>
           </div>
@@ -75,12 +83,14 @@ function Dashboard() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "6px",
-              color: "#94a3b8",
+              gap: "8px",
+              color: "#7c3aed",
               fontSize: "13px",
-              backgroundColor: "#1f2937",
-              padding: "6px 12px",
-              borderRadius: "6px",
+              fontWeight: "600",
+              backgroundColor: "#e8ecf4",
+              padding: "8px 16px",
+              borderRadius: "16px",
+              boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
             }}
           >
             <LayoutDashboard size={16} />
@@ -89,19 +99,18 @@ function Dashboard() {
 
           <button
             onClick={logout}
+            className="neu-button"
             style={{
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              padding: "7px 14px",
-              backgroundColor: "#27272a",
-              border: "1px solid #3f3f46",
-              borderRadius: "6px",
-              color: "#f43f5e",
-              fontWeight: "600",
+              padding: "8px 16px",
+              borderRadius: "16px",
+              border: "none",
+              color: "#ef4444",
+              fontWeight: "700",
               fontSize: "13px",
               cursor: "pointer",
-              transition: "all 0.2s",
             }}
             title="Log out of local session"
           >
@@ -112,7 +121,7 @@ function Dashboard() {
       </header>
 
       {/* Main Content Area */}
-      <main style={{ padding: "24px 28px" }}>
+      <main style={{ padding: "28px 36px" }}>
         <KanbanBoard />
       </main>
     </div>
@@ -130,8 +139,9 @@ function MainApp() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#090d16",
-          color: "#9ca3af",
+          backgroundColor: "#e8ecf4",
+          color: "#7c3aed",
+          fontWeight: "600",
           fontFamily: "system-ui, sans-serif",
         }}
       >

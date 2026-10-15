@@ -22,7 +22,8 @@ export function DeleteConfirmModal({
       style={{
         position: "fixed",
         inset: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        backgroundColor: "rgba(15, 23, 42, 0.35)",
+        backdropFilter: "blur(4px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -33,46 +34,51 @@ export function DeleteConfirmModal({
     >
       <div
         style={{
-          backgroundColor: "#161b26",
-          border: "1px solid #374151",
-          borderRadius: "12px",
+          background: "linear-gradient(145deg, #f0f4fc, #dfe4ee)",
+          border: "1px solid rgba(255, 255, 255, 0.8)",
+          borderRadius: "24px",
           width: "100%",
           maxWidth: "420px",
-          padding: "24px",
-          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
+          padding: "26px",
+          boxShadow: "20px 20px 60px #cfd5e2, -20px -20px 60px #ffffff",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "16px" }}>
           <div
             style={{
-              padding: "10px",
-              backgroundColor: "rgba(239, 68, 68, 0.15)",
-              color: "#ef4444",
-              borderRadius: "8px",
+              padding: "12px",
+              backgroundColor: "#fef2f2",
+              color: "#dc2626",
+              borderRadius: "14px",
+              boxShadow: "inset 2px 2px 5px rgba(220, 38, 38, 0.15), 2px 2px 5px #ffffff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <AlertTriangle size={22} />
+            <AlertTriangle size={24} />
           </div>
-          <h3 style={{ margin: 0, fontSize: "17px", fontWeight: "700", color: "#f8fafc" }}>
+          <h3 style={{ margin: 0, fontSize: "18px", fontWeight: "700", color: "#1e1b4b" }}>
             {title}
           </h3>
         </div>
 
-        <p style={{ margin: "0 0 24px 0", fontSize: "14px", color: "#9ca3af", lineHeight: "1.5" }}>
+        <p style={{ margin: "0 0 24px 0", fontSize: "14px", color: "#64748b", lineHeight: "1.6" }}>
           {message}
         </p>
 
-        <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px" }}>
           <button
             onClick={onClose}
+            className="neu-button"
             style={{
-              padding: "8px 16px",
-              backgroundColor: "transparent",
-              border: "1px solid #374151",
-              borderRadius: "6px",
-              color: "#d1d5db",
+              padding: "10px 18px",
+              border: "none",
+              borderRadius: "12px",
+              color: "#64748b",
               fontSize: "13px",
+              fontWeight: "600",
               cursor: "pointer",
             }}
           >
@@ -84,14 +90,16 @@ export function DeleteConfirmModal({
               onClose();
             }}
             style={{
-              padding: "8px 18px",
-              backgroundColor: "#ef4444",
+              padding: "10px 20px",
+              background: "linear-gradient(145deg, #ef4444, #dc2626)",
+              boxShadow: "4px 4px 12px rgba(220, 38, 38, 0.35), -3px -3px 8px #ffffff",
               border: "none",
-              borderRadius: "6px",
+              borderRadius: "12px",
               color: "#ffffff",
               fontSize: "13px",
               fontWeight: "600",
               cursor: "pointer",
+              transition: "all 0.15s ease",
             }}
           >
             Delete Application

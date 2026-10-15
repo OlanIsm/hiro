@@ -156,115 +156,123 @@ export function KanbanBoard() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "16px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "20px",
         }}
       >
         <div
           style={{
-            backgroundColor: "#161b26",
-            border: "1px solid #283141",
-            borderRadius: "8px",
-            padding: "16px 20px",
+            backgroundColor: "#e8ecf4",
+            borderRadius: "24px",
+            padding: "20px 24px",
             display: "flex",
             alignItems: "center",
-            gap: "14px",
+            gap: "16px",
+            boxShadow: "8px 8px 18px #cfd5e2, -8px -8px 18px #ffffff",
+            border: "1px solid rgba(255, 255, 255, 0.6)",
           }}
         >
           <div
             style={{
-              padding: "10px",
-              backgroundColor: "rgba(56, 189, 248, 0.1)",
-              color: "#38bdf8",
-              borderRadius: "8px",
+              padding: "12px",
+              backgroundColor: "#ede9fe",
+              color: "#7c3aed",
+              borderRadius: "18px",
+              boxShadow: "inset 2px 2px 4px #cfd5e2, inset -2px -2px 4px #ffffff",
             }}
           >
-            <Briefcase size={20} />
+            <Briefcase size={22} />
           </div>
           <div>
-            <div style={{ fontSize: "12px", color: "#9ca3af", fontWeight: "500" }}>Total Applications</div>
-            <div style={{ fontSize: "22px", fontWeight: "700", color: "#f3f4f6" }}>{metrics.total}</div>
+            <div style={{ fontSize: "12px", color: "#64748b", fontWeight: "600" }}>Total Applications</div>
+            <div style={{ fontSize: "24px", fontWeight: "800", color: "#1e1b4b" }}>{metrics.total}</div>
           </div>
         </div>
 
         <div
           style={{
-            backgroundColor: "#161b26",
-            border: "1px solid #283141",
-            borderRadius: "8px",
-            padding: "16px 20px",
+            backgroundColor: "#e8ecf4",
+            borderRadius: "24px",
+            padding: "20px 24px",
             display: "flex",
             alignItems: "center",
-            gap: "14px",
+            gap: "16px",
+            boxShadow: "8px 8px 18px #cfd5e2, -8px -8px 18px #ffffff",
+            border: "1px solid rgba(255, 255, 255, 0.6)",
           }}
         >
           <div
             style={{
-              padding: "10px",
-              backgroundColor: "rgba(251, 191, 36, 0.1)",
-              color: "#fbbf24",
-              borderRadius: "8px",
+              padding: "12px",
+              backgroundColor: "#fef3c7",
+              color: "#d97706",
+              borderRadius: "18px",
+              boxShadow: "inset 2px 2px 4px #cfd5e2, inset -2px -2px 4px #ffffff",
             }}
           >
-            <Clock size={20} />
+            <Clock size={22} />
           </div>
           <div>
-            <div style={{ fontSize: "12px", color: "#9ca3af", fontWeight: "500" }}>Test Phase</div>
-            <div style={{ fontSize: "22px", fontWeight: "700", color: "#f3f4f6" }}>{metrics.test}</div>
+            <div style={{ fontSize: "12px", color: "#64748b", fontWeight: "600" }}>Test Phase</div>
+            <div style={{ fontSize: "24px", fontWeight: "800", color: "#1e1b4b" }}>{metrics.test}</div>
           </div>
         </div>
 
         <div
           style={{
-            backgroundColor: "#161b26",
-            border: "1px solid #283141",
-            borderRadius: "8px",
-            padding: "16px 20px",
+            backgroundColor: "#e8ecf4",
+            borderRadius: "24px",
+            padding: "20px 24px",
             display: "flex",
             alignItems: "center",
-            gap: "14px",
+            gap: "16px",
+            boxShadow: "8px 8px 18px #cfd5e2, -8px -8px 18px #ffffff",
+            border: "1px solid rgba(255, 255, 255, 0.6)",
           }}
         >
           <div
             style={{
-              padding: "10px",
-              backgroundColor: "rgba(168, 85, 247, 0.1)",
-              color: "#a855f7",
-              borderRadius: "8px",
+              padding: "12px",
+              backgroundColor: "#ede9fe",
+              color: "#8b5cf6",
+              borderRadius: "18px",
+              boxShadow: "inset 2px 2px 4px #cfd5e2, inset -2px -2px 4px #ffffff",
             }}
           >
-            <Sparkles size={20} />
+            <Sparkles size={22} />
           </div>
           <div>
-            <div style={{ fontSize: "12px", color: "#9ca3af", fontWeight: "500" }}>Interview Phase</div>
-            <div style={{ fontSize: "22px", fontWeight: "700", color: "#f3f4f6" }}>{metrics.interview}</div>
+            <div style={{ fontSize: "12px", color: "#64748b", fontWeight: "600" }}>Interview Phase</div>
+            <div style={{ fontSize: "24px", fontWeight: "800", color: "#1e1b4b" }}>{metrics.interview}</div>
           </div>
         </div>
 
         <div
           style={{
-            backgroundColor: "#161b26",
-            border: "1px solid #283141",
-            borderRadius: "8px",
-            padding: "16px 20px",
+            backgroundColor: "#e8ecf4",
+            borderRadius: "24px",
+            padding: "20px 24px",
             display: "flex",
             alignItems: "center",
-            gap: "14px",
+            gap: "16px",
+            boxShadow: "8px 8px 18px #cfd5e2, -8px -8px 18px #ffffff",
+            border: "1px solid rgba(255, 255, 255, 0.6)",
           }}
         >
           <div
             style={{
-              padding: "10px",
-              backgroundColor: "rgba(52, 211, 153, 0.1)",
-              color: "#34d399",
-              borderRadius: "8px",
+              padding: "12px",
+              backgroundColor: "#d1fae5",
+              color: "#059669",
+              borderRadius: "18px",
+              boxShadow: "inset 2px 2px 4px #cfd5e2, inset -2px -2px 4px #ffffff",
             }}
           >
-            <CheckCircle2 size={20} />
+            <CheckCircle2 size={22} />
           </div>
           <div>
-            <div style={{ fontSize: "12px", color: "#9ca3af", fontWeight: "500" }}>Active In Pipeline</div>
-            <div style={{ fontSize: "22px", fontWeight: "700", color: "#f3f4f6" }}>{metrics.active}</div>
+            <div style={{ fontSize: "12px", color: "#64748b", fontWeight: "600" }}>Active In Pipeline</div>
+            <div style={{ fontSize: "24px", fontWeight: "800", color: "#1e1b4b" }}>{metrics.active}</div>
           </div>
         </div>
       </div>
@@ -276,28 +284,29 @@ export function KanbanBoard() {
           flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "12px",
-          backgroundColor: "#161b26",
-          padding: "14px 18px",
-          borderRadius: "8px",
-          border: "1px solid #283141",
+          gap: "16px",
+          backgroundColor: "#e8ecf4",
+          padding: "16px 24px",
+          borderRadius: "24px",
+          boxShadow: "8px 8px 20px #cfd5e2, -8px -8px 20px #ffffff",
+          border: "1px solid rgba(255, 255, 255, 0.7)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", flex: "1 1 280px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", flex: "1 1 280px" }}>
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "8px",
-              backgroundColor: "#0d1117",
-              border: "1px solid #374151",
-              borderRadius: "6px",
-              padding: "6px 12px",
+              gap: "10px",
+              backgroundColor: "#e4e8f1",
+              boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+              borderRadius: "16px",
+              padding: "8px 14px",
               width: "100%",
-              maxWidth: "340px",
+              maxWidth: "360px",
             }}
           >
-            <Search size={16} color="#9ca3af" />
+            <Search size={16} color="#7c3aed" />
             <input
               type="text"
               placeholder="Search company, role, or skills..."
@@ -307,25 +316,28 @@ export function KanbanBoard() {
                 background: "transparent",
                 border: "none",
                 outline: "none",
-                color: "#f3f4f6",
+                color: "#1e1b4b",
                 fontSize: "13px",
                 width: "100%",
+                fontWeight: "500",
               }}
             />
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <SlidersHorizontal size={15} color="#9ca3af" />
+            <SlidersHorizontal size={15} color="#7c3aed" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               style={{
-                backgroundColor: "#0d1117",
-                border: "1px solid #374151",
-                borderRadius: "6px",
-                color: "#e5e7eb",
-                padding: "6px 10px",
+                backgroundColor: "#e4e8f1",
+                boxShadow: "inset 2px 2px 5px #d0d6e2, inset -2px -2px 5px #ffffff",
+                border: "none",
+                borderRadius: "14px",
+                color: "#1e1b4b",
+                padding: "8px 12px",
                 fontSize: "13px",
+                fontWeight: "600",
                 outline: "none",
                 cursor: "pointer",
               }}
@@ -340,45 +352,47 @@ export function KanbanBoard() {
           </div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <button
             onClick={() => setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"))}
+            className="neu-button"
             style={{
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              backgroundColor: "#0d1117",
-              border: "1px solid #374151",
-              borderRadius: "6px",
-              color: "#e5e7eb",
-              padding: "7px 12px",
+              borderRadius: "16px",
+              border: "none",
+              color: "#475569",
+              padding: "9px 16px",
               fontSize: "13px",
+              fontWeight: "600",
               cursor: "pointer",
             }}
             title="Sort by Last Updated"
           >
-            <ArrowUpDown size={14} />
+            <ArrowUpDown size={14} color="#7c3aed" />
             <span>Updated: {sortOrder === "desc" ? "Newest" : "Oldest"}</span>
           </button>
 
           <button
             onClick={refreshInternships}
             disabled={loading}
+            className="neu-button"
             style={{
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              backgroundColor: "#0d1117",
-              border: "1px solid #374151",
-              borderRadius: "6px",
-              color: "#e5e7eb",
-              padding: "7px 12px",
+              borderRadius: "16px",
+              border: "none",
+              color: "#475569",
+              padding: "9px 16px",
               fontSize: "13px",
+              fontWeight: "600",
               cursor: loading ? "not-allowed" : "pointer",
             }}
             title="Refresh Board"
           >
-            <RefreshCw size={14} className={loading ? "spin" : ""} />
+            <RefreshCw size={14} className={loading ? "spin" : ""} color="#7c3aed" />
             <span>Refresh</span>
           </button>
 
@@ -388,19 +402,17 @@ export function KanbanBoard() {
               setEditingInternship(null);
               setIsFormModalOpen(true);
             }}
+            className="neu-button-primary"
             style={{
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              backgroundColor: "#0284c7",
               border: "none",
-              borderRadius: "6px",
-              color: "#ffffff",
-              padding: "7px 16px",
+              borderRadius: "16px",
+              padding: "9px 18px",
               fontSize: "13px",
-              fontWeight: "600",
+              fontWeight: "700",
               cursor: "pointer",
-              boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
             }}
           >
             <Plus size={16} />
@@ -413,19 +425,21 @@ export function KanbanBoard() {
       {error && (
         <div
           style={{
-            backgroundColor: "rgba(239, 68, 68, 0.15)",
-            border: "1px solid #ef4444",
-            borderRadius: "6px",
-            padding: "12px 16px",
+            backgroundColor: "#fef2f2",
+            border: "1px solid #fecaca",
+            borderRadius: "16px",
+            boxShadow: "inset 2px 2px 4px rgba(220, 38, 38, 0.1), 4px 4px 10px #cfd5e2",
+            padding: "12px 18px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            color: "#fca5a5",
+            color: "#b91c1c",
             fontSize: "14px",
+            fontWeight: "500",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <AlertTriangle size={18} />
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <AlertTriangle size={18} color="#dc2626" />
             <span>{error}</span>
           </div>
           <button
@@ -433,9 +447,10 @@ export function KanbanBoard() {
             style={{
               background: "transparent",
               border: "none",
-              color: "#fca5a5",
+              color: "#dc2626",
               cursor: "pointer",
               fontSize: "13px",
+              fontWeight: "600",
               textDecoration: "underline",
             }}
           >
@@ -450,8 +465,9 @@ export function KanbanBoard() {
           style={{
             textAlign: "center",
             padding: "60px 0",
-            color: "#9ca3af",
+            color: "#64748b",
             fontSize: "15px",
+            fontWeight: "500",
           }}
         >
           Loading your Kanban workspace...

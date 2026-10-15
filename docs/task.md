@@ -116,17 +116,17 @@ persisted backend data.
 
 ## Phase 5 --- Local Launcher
 
--   [ ] Implement a launcher command named `olan's jira` appropriate for
+-   [x] Implement a launcher command named `olan's jira` appropriate for
     the target shell/OS.
--   [ ] Check whether the local server is already running before
+-   [x] Check whether the local server is already running before
     starting another instance.
--   [ ] Start the backend and serve the built frontend locally.
--   [ ] Bind the server to `127.0.0.1` by default.
--   [ ] Open the browser at the local application URL.
--   [ ] Handle startup failures and port conflicts with readable
+-   [x] Start the backend and serve the built frontend locally.
+-   [x] Bind the server to `127.0.0.1` by default.
+-   [x] Open the browser at the local application URL.
+-   [x] Handle startup failures and port conflicts with readable
     messages.
--   [ ] Document installation of the command on Windows.
--   [ ] Ensure closing the terminal or stopping the process has
+-   [x] Document installation of the command on Windows.
+-   [x] Ensure closing the terminal or stopping the process has
     documented behavior.
 
 **Acceptance criteria** - Running the command opens the login page. -

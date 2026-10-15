@@ -1,4 +1,7 @@
-const API_BASE = "http://127.0.0.1:4000/api";
+const API_BASE =
+  typeof window !== "undefined" && window.location.port === "4000"
+    ? "/api"
+    : "http://127.0.0.1:4000/api";
 
 export interface ApiResponse<T> {
   data?: T;

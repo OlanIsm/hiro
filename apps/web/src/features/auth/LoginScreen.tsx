@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "./useAuth";
+import { Lock, Sparkles } from "lucide-react";
 
 export function LoginScreen() {
   const { initialized, login, setup } = useAuth();
@@ -49,50 +50,70 @@ export function LoginScreen() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#090d16",
-        color: "#f3f4f6",
+        backgroundColor: "#e8ecf4",
+        color: "#1e1b4b",
         fontFamily: "system-ui, -apple-system, sans-serif",
+        padding: "20px",
       }}
     >
       <div
         style={{
           width: "100%",
           maxWidth: "420px",
-          padding: "32px",
-          borderRadius: "12px",
-          backgroundColor: "#161b26",
-          border: "1px solid #283141",
-          boxShadow: "0 8px 30px rgba(0, 0, 0, 0.4)",
+          padding: "36px",
+          borderRadius: "32px",
+          background: "linear-gradient(145deg, #f0f4fc, #dfe4ee)",
+          boxShadow: "16px 16px 36px #cfd5e2, -16px -16px 36px #ffffff",
+          border: "1px solid rgba(255, 255, 255, 0.6)",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
+        <div style={{ textAlign: "center", marginBottom: "28px" }}>
+          <div
+            style={{
+              width: "56px",
+              height: "56px",
+              margin: "0 auto 16px auto",
+              borderRadius: "20px",
+              background: "linear-gradient(145deg, #8b5cf6, #7c3aed)",
+              boxShadow: "6px 6px 16px rgba(124, 58, 237, 0.3), -4px -4px 12px #ffffff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+            }}
+          >
+            {initialized ? <Lock size={24} /> : <Sparkles size={24} />}
+          </div>
+
           <h1
             style={{
               fontSize: "24px",
-              fontWeight: "700",
-              margin: "0 0 8px 0",
-              color: "#38bdf8",
+              fontWeight: "800",
+              margin: "0 0 6px 0",
+              color: "#6d28d9",
+              letterSpacing: "-0.02em",
             }}
           >
             Olan's Jira
           </h1>
-          <p style={{ margin: 0, fontSize: "14px", color: "#9ca3af" }}>
+          <p style={{ margin: 0, fontSize: "14px", color: "#64748b" }}>
             {initialized
-              ? "Welcome back. Enter your password to unlock."
-              : "First run setup: Create your master password."}
+              ? "Welcome back. Enter password to unlock."
+              : "First-run setup: Create your master password."}
           </p>
         </div>
 
         {errorMsg && (
           <div
             style={{
-              padding: "10px 14px",
-              backgroundColor: "rgba(239, 68, 68, 0.15)",
-              border: "1px solid #ef4444",
-              borderRadius: "6px",
-              color: "#fca5a5",
-              fontSize: "14px",
-              marginBottom: "16px",
+              padding: "12px 16px",
+              backgroundColor: "rgba(239, 68, 68, 0.1)",
+              borderRadius: "16px",
+              boxShadow: "inset 2px 2px 5px rgba(239, 68, 68, 0.2)",
+              color: "#dc2626",
+              fontSize: "13px",
+              marginBottom: "20px",
+              fontWeight: "500",
             }}
           >
             {errorMsg}
@@ -100,15 +121,15 @@ export function LoginScreen() {
         )}
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: "16px" }}>
+          <div style={{ marginBottom: "20px" }}>
             <label
               htmlFor="password"
               style={{
                 display: "block",
                 fontSize: "13px",
-                fontWeight: "500",
-                marginBottom: "6px",
-                color: "#d1d5db",
+                fontWeight: "600",
+                marginBottom: "8px",
+                color: "#475569",
               }}
             >
               Password
@@ -122,29 +143,30 @@ export function LoginScreen() {
               disabled={submitting}
               style={{
                 width: "100%",
-                padding: "10px 12px",
-                borderRadius: "6px",
-                border: "1px solid #374151",
-                backgroundColor: "#0d1117",
-                color: "#f3f4f6",
+                padding: "12px 16px",
+                borderRadius: "16px",
+                border: "none",
+                outline: "none",
+                backgroundColor: "#e4e8f1",
+                boxShadow: "inset 4px 4px 8px #d0d6e2, inset -4px -4px 8px #ffffff",
+                color: "#1e1b4b",
                 fontSize: "14px",
                 boxSizing: "border-box",
-                outline: "none",
               }}
               required
             />
           </div>
 
           {!initialized && (
-            <div style={{ marginBottom: "16px" }}>
+            <div style={{ marginBottom: "20px" }}>
               <label
                 htmlFor="confirmPassword"
                 style={{
                   display: "block",
                   fontSize: "13px",
-                  fontWeight: "500",
-                  marginBottom: "6px",
-                  color: "#d1d5db",
+                  fontWeight: "600",
+                  marginBottom: "8px",
+                  color: "#475569",
                 }}
               >
                 Confirm Password
@@ -158,14 +180,15 @@ export function LoginScreen() {
                 disabled={submitting}
                 style={{
                   width: "100%",
-                  padding: "10px 12px",
-                  borderRadius: "6px",
-                  border: "1px solid #374151",
-                  backgroundColor: "#0d1117",
-                  color: "#f3f4f6",
+                  padding: "12px 16px",
+                  borderRadius: "16px",
+                  border: "none",
+                  outline: "none",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 4px 4px 8px #d0d6e2, inset -4px -4px 8px #ffffff",
+                  color: "#1e1b4b",
                   fontSize: "14px",
                   boxSizing: "border-box",
-                  outline: "none",
                 }}
                 required
               />
@@ -175,18 +198,17 @@ export function LoginScreen() {
           <button
             type="submit"
             disabled={submitting}
+            className="neu-button-primary"
             style={{
               width: "100%",
-              padding: "10px 16px",
-              borderRadius: "6px",
+              padding: "13px 20px",
+              borderRadius: "18px",
               border: "none",
-              backgroundColor: "#0284c7",
-              color: "#ffffff",
               fontSize: "14px",
-              fontWeight: "600",
+              fontWeight: "700",
               cursor: submitting ? "not-allowed" : "pointer",
               opacity: submitting ? 0.7 : 1,
-              transition: "background-color 0.2s",
+              marginTop: "8px",
             }}
           >
             {submitting

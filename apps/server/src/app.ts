@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import session from "express-session";
+import path from "node:path";
+import fs from "node:fs";
 import { internshipRouter } from "./routes/internshipRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
@@ -14,7 +16,19 @@ const app = express();
 const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 app.use(
   cors({
-    origin: clientOrigin,
+    origin: (origin, callback) => {
+      // Allow requests from same origin (production single-origin) or configured client origin
+      if (
+        !origin ||
+        origin === clientOrigin ||
+        origin.startsWith("http://127.0.0.1") ||
+        origin.startsWith("http://localhost")
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
     credentials: true,
   })
 );
@@ -49,6 +63,25 @@ app.use("/api/auth", authRouter);
 
 // Protected internship CRUD and history routes
 app.use("/api/internships", requireAuth, internshipRouter);
+
+// Serve built frontend in production / local launcher mode
+const candidatePaths = [
+  path.resolve(process.cwd(), "../web/dist"),
+  path.resolve(process.cwd(), "apps/web/dist"),
+];
+const frontendDistPath = candidatePaths.find((p) => fs.existsSync(p));
+
+if (frontendDistPath) {
+  app.use(express.static(frontendDistPath));
+
+  // SPA fallback for non-API GET requests
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
+}
 
 // Centralized error handling middleware
 app.use(errorHandler);

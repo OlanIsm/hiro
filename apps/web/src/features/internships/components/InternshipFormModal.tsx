@@ -123,7 +123,8 @@ export function InternshipFormModal({
       style={{
         position: "fixed",
         inset: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        backgroundColor: "rgba(15, 23, 42, 0.35)",
+        backdropFilter: "blur(4px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -134,15 +135,15 @@ export function InternshipFormModal({
     >
       <div
         style={{
-          backgroundColor: "#161b26",
-          border: "1px solid #283141",
-          borderRadius: "12px",
+          background: "linear-gradient(145deg, #f0f4fc, #dfe4ee)",
+          border: "1px solid rgba(255, 255, 255, 0.8)",
+          borderRadius: "28px",
           width: "100%",
           maxWidth: "600px",
           maxHeight: "90vh",
           display: "flex",
           flexDirection: "column",
-          boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
+          boxShadow: "20px 20px 60px #cfd5e2, -20px -20px 60px #ffffff",
           overflow: "hidden",
         }}
         onClick={(e) => e.stopPropagation()}
@@ -153,24 +154,29 @@ export function InternshipFormModal({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "18px 24px",
-            borderBottom: "1px solid #283141",
+            padding: "20px 28px",
+            borderBottom: "1px solid rgba(207, 213, 226, 0.5)",
           }}
         >
-          <h2 style={{ margin: 0, fontSize: "18px", fontWeight: "700", color: "#f8fafc" }}>
+          <h2 style={{ margin: 0, fontSize: "19px", fontWeight: "700", color: "#1e1b4b" }}>
             {isEditing ? "Edit Internship Application" : "Add Internship Application"}
           </h2>
           <button
             onClick={onClose}
+            className="neu-button"
             style={{
-              background: "transparent",
               border: "none",
-              color: "#9ca3af",
+              borderRadius: "50%",
+              color: "#64748b",
               cursor: "pointer",
-              padding: "4px",
+              width: "32px",
+              height: "32px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
@@ -178,22 +184,24 @@ export function InternshipFormModal({
         <form
           onSubmit={handleSubmit}
           style={{
-            padding: "20px 24px",
+            padding: "22px 28px",
             overflowY: "auto",
             display: "flex",
             flexDirection: "column",
-            gap: "16px",
+            gap: "18px",
           }}
         >
           {formError && (
             <div
               style={{
-                padding: "10px 14px",
-                backgroundColor: "rgba(239, 68, 68, 0.15)",
-                border: "1px solid #ef4444",
-                borderRadius: "6px",
-                color: "#fca5a5",
+                padding: "12px 16px",
+                backgroundColor: "#fef2f2",
+                border: "1px solid #fecaca",
+                borderRadius: "12px",
+                color: "#b91c1c",
                 fontSize: "13px",
+                fontWeight: "500",
+                boxShadow: "inset 2px 2px 4px rgba(220, 38, 38, 0.1)",
               }}
             >
               {formError}
@@ -203,7 +211,7 @@ export function InternshipFormModal({
           {/* Row 1: Company & Role */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Company Name *
               </label>
               <input
@@ -214,19 +222,21 @@ export function InternshipFormModal({
                 onChange={(e) => setCompanyName(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Role *
               </label>
               <input
@@ -237,13 +247,15 @@ export function InternshipFormModal({
                 onChange={(e) => setRole(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
@@ -252,7 +264,7 @@ export function InternshipFormModal({
           {/* Row 2: Status & Applied Date */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Status
               </label>
               <select
@@ -260,14 +272,16 @@ export function InternshipFormModal({
                 onChange={(e) => setStatus(e.target.value as KanbanColumnId)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
                   cursor: "pointer",
+                  outline: "none",
                 }}
               >
                 {KANBAN_COLUMNS.map((col) => (
@@ -279,7 +293,7 @@ export function InternshipFormModal({
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Application Date
               </label>
               <input
@@ -288,13 +302,15 @@ export function InternshipFormModal({
                 onChange={(e) => setAppliedAt(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
@@ -302,10 +318,10 @@ export function InternshipFormModal({
 
           {/* Skills Input */}
           <div>
-            <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+            <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
               Skills & Tags
             </label>
-            <div style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
+            <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
               <input
                 type="text"
                 placeholder="Add a skill (press Enter)..."
@@ -314,36 +330,39 @@ export function InternshipFormModal({
                 onKeyDown={handleKeyDownSkill}
                 style={{
                   flex: 1,
-                  padding: "8px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
+                  outline: "none",
                 }}
               />
               <button
                 type="button"
                 onClick={handleAddSkill}
+                className="neu-button"
                 style={{
-                  padding: "8px 14px",
-                  backgroundColor: "#1f2937",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#e5e7eb",
+                  padding: "10px 18px",
+                  border: "none",
+                  borderRadius: "12px",
+                  color: "#7c3aed",
+                  fontWeight: "600",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: "4px",
+                  gap: "6px",
                   fontSize: "13px",
                 }}
               >
-                <Plus size={15} /> Add
+                <Plus size={16} /> Add
               </button>
             </div>
 
             {skills.length > 0 && (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                 {skills.map((s) => (
                   <span
                     key={s}
@@ -351,12 +370,14 @@ export function InternshipFormModal({
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "6px",
-                      backgroundColor: "#0f172a",
-                      border: "1px solid #1e3a5f",
-                      color: "#38bdf8",
+                      backgroundColor: "#ede9fe",
+                      border: "1px solid rgba(124, 58, 237, 0.2)",
+                      color: "#6d28d9",
+                      fontWeight: "600",
                       fontSize: "12px",
-                      padding: "3px 8px",
-                      borderRadius: "4px",
+                      padding: "4px 10px",
+                      borderRadius: "9999px",
+                      boxShadow: "2px 2px 5px #d0d6e2, -2px -2px 5px #ffffff",
                     }}
                   >
                     {s}
@@ -366,14 +387,14 @@ export function InternshipFormModal({
                       style={{
                         background: "transparent",
                         border: "none",
-                        color: "#94a3b8",
+                        color: "#8b5cf6",
                         cursor: "pointer",
                         padding: 0,
                         display: "flex",
                         alignItems: "center",
                       }}
                     >
-                      <X size={12} />
+                      <X size={13} />
                     </button>
                   </span>
                 ))}
@@ -384,7 +405,7 @@ export function InternshipFormModal({
           {/* Row 3: Job URL & Recruiter Email */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Job URL
               </label>
               <input
@@ -394,19 +415,21 @@ export function InternshipFormModal({
                 onChange={(e) => setJobUrl(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Recruiter Email
               </label>
               <input
@@ -416,13 +439,15 @@ export function InternshipFormModal({
                 onChange={(e) => setRecruiterEmail(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
@@ -431,7 +456,7 @@ export function InternshipFormModal({
           {/* Row 4: Next Action & Deadline */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Next Action
               </label>
               <input
@@ -441,19 +466,21 @@ export function InternshipFormModal({
                 onChange={(e) => setNextAction(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
                 Deadline
               </label>
               <input
@@ -462,13 +489,15 @@ export function InternshipFormModal({
                 onChange={(e) => setDeadline(e.target.value)}
                 style={{
                   width: "100%",
-                  padding: "9px 12px",
-                  backgroundColor: "#0d1117",
-                  border: "1px solid #374151",
-                  borderRadius: "6px",
-                  color: "#f3f4f6",
+                  padding: "10px 14px",
+                  backgroundColor: "#e4e8f1",
+                  boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "12px",
+                  color: "#1e1b4b",
                   fontSize: "13px",
                   boxSizing: "border-box",
+                  outline: "none",
                 }}
               />
             </div>
@@ -476,7 +505,7 @@ export function InternshipFormModal({
 
           {/* Job Description & Notes */}
           <div>
-            <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+            <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
               Job Description
             </label>
             <textarea
@@ -486,20 +515,22 @@ export function InternshipFormModal({
               onChange={(e) => setJobDescription(e.target.value)}
               style={{
                 width: "100%",
-                padding: "9px 12px",
-                backgroundColor: "#0d1117",
-                border: "1px solid #374151",
-                borderRadius: "6px",
-                color: "#f3f4f6",
+                padding: "10px 14px",
+                backgroundColor: "#e4e8f1",
+                boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                border: "1px solid rgba(255, 255, 255, 0.7)",
+                borderRadius: "12px",
+                color: "#1e1b4b",
                 fontSize: "13px",
                 boxSizing: "border-box",
                 resize: "vertical",
+                outline: "none",
               }}
             />
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#d1d5db", marginBottom: "6px" }}>
+            <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
               Personal Notes
             </label>
             <textarea
@@ -509,14 +540,16 @@ export function InternshipFormModal({
               onChange={(e) => setNotes(e.target.value)}
               style={{
                 width: "100%",
-                padding: "9px 12px",
-                backgroundColor: "#0d1117",
-                border: "1px solid #374151",
-                borderRadius: "6px",
-                color: "#f3f4f6",
+                padding: "10px 14px",
+                backgroundColor: "#e4e8f1",
+                boxShadow: "inset 3px 3px 6px #d0d6e2, inset -3px -3px 6px #ffffff",
+                border: "1px solid rgba(255, 255, 255, 0.7)",
+                borderRadius: "12px",
+                color: "#1e1b4b",
                 fontSize: "13px",
                 boxSizing: "border-box",
                 resize: "vertical",
+                outline: "none",
               }}
             />
           </div>
@@ -526,23 +559,24 @@ export function InternshipFormModal({
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              gap: "12px",
-              marginTop: "12px",
-              paddingTop: "16px",
-              borderTop: "1px solid #283141",
+              gap: "14px",
+              marginTop: "8px",
+              paddingTop: "18px",
+              borderTop: "1px solid rgba(207, 213, 226, 0.5)",
             }}
           >
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
+              className="neu-button"
               style={{
-                padding: "9px 16px",
-                backgroundColor: "transparent",
-                border: "1px solid #374151",
-                borderRadius: "6px",
-                color: "#d1d5db",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "12px",
+                color: "#64748b",
                 fontSize: "13px",
+                fontWeight: "600",
                 cursor: "pointer",
               }}
             >
@@ -551,11 +585,11 @@ export function InternshipFormModal({
             <button
               type="submit"
               disabled={submitting}
+              className="neu-button-primary"
               style={{
-                padding: "9px 20px",
-                backgroundColor: "#0284c7",
+                padding: "10px 24px",
                 border: "none",
-                borderRadius: "6px",
+                borderRadius: "12px",
                 color: "#ffffff",
                 fontWeight: "600",
                 fontSize: "13px",
