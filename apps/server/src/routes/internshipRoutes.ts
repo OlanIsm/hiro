@@ -9,13 +9,38 @@ import {
 
 export const internshipRouter = Router();
 
-// GET /api/internships - List all applications
+// GET /api/internships - List all applications (supports ?q=...&status=...&sort=asc|desc)
 internshipRouter.get(
   "/",
-  async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const data = await internshipService.getAllInternships();
+      const q = typeof req.query.q === "string" ? req.query.q : undefined;
+      const status = typeof req.query.status === "string" ? req.query.status : undefined;
+      const sort = req.query.sort === "asc" || req.query.sort === "desc" ? req.query.sort : undefined;
+
+      const data = await internshipService.getAllInternships({
+        query: q,
+        status,
+        sortOrder: sort,
+      });
       res.json({ data });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// GET /api/internships/export - Export applications as JSON or CSV
+internshipRouter.get(
+  "/export",
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const format = req.query.format === "csv" ? "csv" : "json";
+      const { content, contentType, filename } = await internshipService.exportData(format);
+
+      res.setHeader("Content-Type", contentType);
+      res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+      res.send(content);
     } catch (error) {
       next(error);
     }

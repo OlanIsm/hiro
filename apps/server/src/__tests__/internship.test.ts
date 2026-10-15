@@ -200,4 +200,75 @@ describe("Internship API & Status History (Phase 1)", () => {
       expect(getRes.status).toBe(404);
     });
   });
+
+  describe("Phase 6 - Search, Filter, Sort, and Export", () => {
+    beforeEach(async () => {
+      // Seed 3 test records
+      await agent.post("/api/internships").send({
+        companyName: "Apple",
+        role: "iOS Engineering Intern",
+        skills: ["Swift", "SwiftUI"],
+        status: "APPLIED",
+      });
+
+      await agent.post("/api/internships").send({
+        companyName: "Microsoft",
+        role: "Cloud Engineering Intern",
+        skills: ["Azure", "TypeScript", "C#"],
+        status: "TEST",
+      });
+
+      await agent.post("/api/internships").send({
+        companyName: "Google",
+        role: "Frontend Engineer Intern",
+        skills: ["React", "TypeScript"],
+        status: "INTERVIEW",
+      });
+    });
+
+    it("should filter applications by status", async () => {
+      const res = await agent.get("/api/internships?status=TEST");
+      expect(res.status).toBe(200);
+      expect(res.body.data).toHaveLength(1);
+      expect(res.body.data[0].companyName).toBe("Microsoft");
+    });
+
+    it("should search applications by company name or role", async () => {
+      const res = await agent.get("/api/internships?q=Google");
+      expect(res.status).toBe(200);
+      expect(res.body.data).toHaveLength(1);
+      expect(res.body.data[0].role).toBe("Frontend Engineer Intern");
+    });
+
+    it("should search applications by skills tag", async () => {
+      const res = await agent.get("/api/internships?q=TypeScript");
+      expect(res.status).toBe(200);
+      expect(res.body.data).toHaveLength(2); // Microsoft and Google
+    });
+
+    it("should export applications as JSON", async () => {
+      const res = await agent.get("/api/internships/export?format=json");
+      expect(res.status).toBe(200);
+      expect(res.headers["content-type"]).toContain("application/json");
+      expect(res.headers["content-disposition"]).toContain("attachment");
+      expect(res.headers["content-disposition"]).toContain(".json");
+
+      const parsed = JSON.parse(res.text);
+      expect(Array.isArray(parsed)).toBe(true);
+      expect(parsed.length).toBeGreaterThanOrEqual(3);
+    });
+
+    it("should export applications as CSV", async () => {
+      const res = await agent.get("/api/internships/export?format=csv");
+      expect(res.status).toBe(200);
+      expect(res.headers["content-type"]).toContain("text/csv");
+      expect(res.headers["content-disposition"]).toContain("attachment");
+      expect(res.headers["content-disposition"]).toContain(".csv");
+
+      expect(res.text).toContain("ID,Company,Role,Status");
+      expect(res.text).toContain("Apple");
+      expect(res.text).toContain("Microsoft");
+      expect(res.text).toContain("Google");
+    });
+  });
 });

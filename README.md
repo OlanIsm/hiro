@@ -118,12 +118,64 @@ Or run them individually in separate terminal sessions:
 
 From the repository root:
 
+- `npm run verify` - Complete QA verification: lint, typecheck, test suite, and build.
 - `npm start` - Launch the production application and open the browser.
 - `npm run dev` - Run frontend and backend concurrently in dev mode.
 - `npm run build` - Build both backend and frontend for production.
 - `npm test` - Run automated test suite (Vitest + Supertest).
 - `npm run typecheck` - Run TypeScript compiler checks on both `apps/web` and `apps/server`.
 - `npm run lint` - Run linter (`oxlint`).
+
+---
+
+## 💾 Database Backup & Restore
+
+Hiro stores all application data in a local SQLite database (`apps/server/prisma/dev.db`).
+
+### 1. Manual Backup
+To create a safe snapshot of your data:
+
+**PowerShell (Windows):**
+```powershell
+Copy-Item apps/server/prisma/dev.db "apps/server/prisma/backup-$(Get-Date -Format 'yyyyMMdd-HHmmss').db"
+```
+
+**Bash (Linux / macOS):**
+```bash
+cp apps/server/prisma/dev.db apps/server/prisma/backup-$(date +%Y%m%d-%H%M%S).db
+```
+
+### 2. Restoring from a Backup
+1. Stop the application server (`Ctrl + C`).
+2. Replace `apps/server/prisma/dev.db` with your backup copy:
+   ```powershell
+   Copy-Item apps/server/prisma/backup-YYYYMMDD-HHMMSS.db apps/server/prisma/dev.db
+   ```
+3. Restart the application (`npm start` or `npm run dev`).
+
+---
+
+## 📤 Data Export (CSV & JSON)
+
+Hiro provides instant data export directly from the UI or via API:
+- **From UI**: Click **Export CSV** in the collapsible sidebar.
+- **Via API**:
+  - `GET /api/internships/export?format=csv` — Downloads RFC 4180 compliant CSV file.
+  - `GET /api/internships/export?format=json` — Downloads full JSON array with parsed tech stacks and history.
+
+---
+
+## 🛠️ Troubleshooting
+
+- **Port 4000 already in use**: The launcher checks `http://127.0.0.1:4000/api/health` before starting to avoid duplicate processes. If a stale node process is holding port 4000, you can terminate it in PowerShell:
+  ```powershell
+  Stop-Process -Id (Get-NetTCPConnection -LocalPort 4000).OwningProcess -Force
+  ```
+- **Session invalid or expired**: If your session cookie expires, the application automatically redirects to the password unlock screen.
+- **Clean Database Reset**: To completely reinitialize the database (will delete all existing records):
+  ```bash
+  npx prisma migrate reset --schema=apps/server/prisma/schema.prisma
+  ```
 
 ---
 

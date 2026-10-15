@@ -6,6 +6,7 @@ import {
   ChevronRight,
   LogOut,
   Sparkles,
+  Download,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -200,6 +201,36 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
           >
             <History size={18} />
             {isExpanded && <span>History</span>}
+          </button>
+
+          {/* Export CSV Data */}
+          <button
+            onClick={() => {
+              const exportUrl =
+                typeof window !== "undefined" && window.location.port === "4000"
+                  ? "/api/internships/export?format=csv"
+                  : "http://127.0.0.1:4000/api/internships/export?format=csv";
+              window.open(exportUrl, "_blank");
+            }}
+            className="neu-button"
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: isExpanded ? "flex-start" : "center",
+              gap: "12px",
+              padding: isExpanded ? "10px 14px" : "10px 0",
+              border: "none",
+              borderRadius: "14px",
+              color: "#6d28d9",
+              fontWeight: "600",
+              fontSize: "13px",
+              cursor: "pointer",
+            }}
+            title="Export CSV Data"
+          >
+            <Download size={18} />
+            {isExpanded && <span>Export CSV</span>}
           </button>
         </nav>
       </div>

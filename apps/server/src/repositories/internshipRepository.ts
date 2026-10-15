@@ -2,10 +2,32 @@ import { prisma } from "../config/prisma.js";
 import { CreateInternshipInput, UpdateInternshipInput } from "../validation/internship.js";
 import { Internship, StatusHistory, Prisma } from "@prisma/client";
 
+export interface FindAllFilters {
+  query?: string;
+  status?: string;
+  sortOrder?: "asc" | "desc";
+}
+
 export class InternshipRepository {
-  async findAll(): Promise<Internship[]> {
+  async findAll(filters?: FindAllFilters): Promise<Internship[]> {
+    const where: Prisma.InternshipWhereInput = {};
+
+    if (filters?.status && filters.status !== "ALL") {
+      where.status = filters.status;
+    }
+
+    if (filters?.query) {
+      const q = filters.query.trim();
+      where.OR = [
+        { companyName: { contains: q } },
+        { role: { contains: q } },
+        { skills: { contains: q } },
+      ];
+    }
+
     return prisma.internship.findMany({
-      orderBy: { updatedAt: "desc" },
+      where,
+      orderBy: { updatedAt: filters?.sortOrder === "asc" ? "asc" : "desc" },
     });
   }
 

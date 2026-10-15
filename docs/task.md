@@ -135,19 +135,19 @@ The application is not exposed to the local network by default.
 
 ## Phase 6 --- MVP Quality and Data Safety
 
--   [ ] Add tests for authentication, internship CRUD, and status
+-   [x] Add tests for authentication, internship CRUD, and status
     changes.
--   [ ] Add tests for search and filtering.
--   [ ] Add frontend validation and API error states.
--   [ ] Add database backup/export instructions.
--   [ ] Add CSV or JSON export if included in the agreed MVP scope.
--   [ ] Add dependency and build checks.
--   [ ] Verify no Gmail credentials are required for core functionality.
--   [ ] Complete a manual acceptance-test pass using the PRD checklist.
+-   [x] Add tests for search and filtering.
+-   [x] Add frontend validation and API error states.
+-   [x] Add database backup/export instructions.
+-   [x] Add CSV or JSON export if included in the agreed MVP scope.
+-   [x] Add dependency and build checks.
+-   [x] Verify no Gmail credentials are required for core functionality.
+-   [x] Complete a manual acceptance-test pass using the PRD checklist.
 
-**MVP release gate** - \[ \] All MVP acceptance criteria pass. - \[ \]
-Data survives a normal restart. - \[ \] No critical authentication or
-data-loss bugs remain. - \[ \] README covers setup, usage, backup, and
+**MVP release gate** - [x] All MVP acceptance criteria pass. - [x]
+Data survives a normal restart. - [x] No critical authentication or
+data-loss bugs remain. - [x] README covers setup, usage, backup, and
 troubleshooting.
 
 ## Phase 7 --- Gmail Integration (After MVP)

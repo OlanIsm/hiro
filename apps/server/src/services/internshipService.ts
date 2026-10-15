@@ -1,6 +1,7 @@
 import {
   internshipRepository,
   InternshipRepository,
+  FindAllFilters,
 } from "../repositories/internshipRepository.js";
 import {
   CreateInternshipInput,
@@ -31,9 +32,69 @@ function formatInternship(internship: Internship): FormattedInternship {
 export class InternshipService {
   constructor(private repo: InternshipRepository = internshipRepository) {}
 
-  async getAllInternships(): Promise<FormattedInternship[]> {
-    const list = await this.repo.findAll();
+  async getAllInternships(filters?: FindAllFilters): Promise<FormattedInternship[]> {
+    const list = await this.repo.findAll(filters);
     return list.map(formatInternship);
+  }
+
+  async exportData(
+    format: "json" | "csv" = "json"
+  ): Promise<{ content: string; contentType: string; filename: string }> {
+    const list = await this.getAllInternships();
+
+    if (format === "csv") {
+      const headers = [
+        "ID",
+        "Company",
+        "Role",
+        "Status",
+        "AppliedDate",
+        "Skills",
+        "JobUrl",
+        "RecruiterEmail",
+        "NextAction",
+        "Deadline",
+        "Notes",
+        "UpdatedAt",
+      ];
+
+      const escapeCsv = (str: string | undefined | null) => {
+        if (str === null || str === undefined) return "";
+        const text = String(str).replace(/"/g, '""');
+        return `"${text}"`;
+      };
+
+      const rows = list.map((item) =>
+        [
+          escapeCsv(item.id),
+          escapeCsv(item.companyName),
+          escapeCsv(item.role),
+          escapeCsv(item.status),
+          escapeCsv(item.appliedAt ? new Date(item.appliedAt).toISOString() : ""),
+          escapeCsv(item.skills.join("; ")),
+          escapeCsv(item.jobUrl),
+          escapeCsv(item.recruiterEmail),
+          escapeCsv(item.nextAction),
+          escapeCsv(item.deadline ? new Date(item.deadline).toISOString() : ""),
+          escapeCsv(item.notes),
+          escapeCsv(item.updatedAt ? new Date(item.updatedAt).toISOString() : ""),
+        ].join(",")
+      );
+
+      const content = [headers.join(","), ...rows].join("\n");
+      return {
+        content,
+        contentType: "text/csv",
+        filename: `hiro-internships-${new Date().toISOString().split("T")[0]}.csv`,
+      };
+    }
+
+    const content = JSON.stringify(list, null, 2);
+    return {
+      content,
+      contentType: "application/json",
+      filename: `hiro-internships-${new Date().toISOString().split("T")[0]}.json`,
+    };
   }
 
   async getInternshipById(id: string): Promise<FormattedInternship> {
