@@ -7,12 +7,14 @@ import { Calendar, Building, Clock, ChevronRight, ChevronLeft } from "lucide-rea
 interface InternshipCardProps {
   internship: Internship;
   onMoveToStatus?: (id: string, status: KanbanColumnId) => void;
+  onClick?: (internship: Internship) => void;
   isOverlay?: boolean;
 }
 
 export function InternshipCard({
   internship,
   onMoveToStatus,
+  onClick,
   isOverlay = false,
 }: InternshipCardProps) {
   const {
@@ -67,6 +69,12 @@ export function InternshipCard({
       role="button"
       tabIndex={0}
       aria-label={`${internship.companyName} - ${internship.role}`}
+      onClick={(e) => {
+        if (!isDragging && onClick) {
+          e.stopPropagation();
+          onClick(internship);
+        }
+      }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
         <h4 style={{ margin: 0, fontSize: "15px", fontWeight: "600", color: "#f8fafc" }}>

@@ -13,6 +13,7 @@ interface KanbanColumnProps {
   description: string;
   internships: Internship[];
   onMoveToStatus: (id: string, status: KanbanColumnId) => void;
+  onCardClick?: (internship: Internship) => void;
 }
 
 const COLUMN_COLORS: Record<KanbanColumnId, string> = {
@@ -28,6 +29,7 @@ export function KanbanColumn({
   description,
   internships,
   onMoveToStatus,
+  onCardClick,
 }: KanbanColumnProps) {
   const { setNodeRef, isOver } = useDroppable({
     id,
@@ -128,6 +130,7 @@ export function KanbanColumn({
                 key={internship.id}
                 internship={internship}
                 onMoveToStatus={onMoveToStatus}
+                onClick={onCardClick}
               />
             ))
           ) : (

@@ -97,17 +97,17 @@ and sorting work together.
 
 ## Phase 4 --- Internship Create, Edit, and Detail
 
--   [ ] Build Add Internship form.
--   [ ] Require company name and role.
--   [ ] Support optional job description, skills/tags, application date,
+-   [x] Build Add Internship form.
+-   [x] Require company name and role.
+-   [x] Support optional job description, skills/tags, application date,
     job URL, recruiter email, notes, next action, and deadline.
--   [ ] Default application date to today and status to Applied.
--   [ ] Build edit flow.
--   [ ] Build delete confirmation.
--   [ ] Build detail modal/page.
--   [ ] Show status history in the detail view.
--   [ ] Validate URL, email, dates, and required fields.
--   [ ] Add clear save, cancel, and error feedback.
+-   [x] Default application date to today and status to Applied.
+-   [x] Build edit flow.
+-   [x] Build delete confirmation.
+-   [x] Build detail modal/page.
+-   [x] Show status history in the detail view.
+-   [x] Validate URL, email, dates, and required fields.
+-   [x] Add clear save, cancel, and error feedback.
 
 **Acceptance criteria** - A new application can be created in under one
 minute. - Editing preserves fields that were not changed. - Deletion

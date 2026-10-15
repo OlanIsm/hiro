@@ -24,6 +24,30 @@ export interface Internship {
   updatedAt: string;
 }
 
+export interface StatusHistoryItem {
+  id: string;
+  internshipId: string;
+  previousStatus?: string | null;
+  newStatus: string;
+  changedAt: string;
+  source: "MANUAL" | "GMAIL";
+  relatedEmailId?: string | null;
+}
+
+export interface InternshipFormData {
+  companyName: string;
+  role: string;
+  jobDescription?: string;
+  skills: string[];
+  status: KanbanColumnId;
+  appliedAt: string;
+  jobUrl?: string;
+  recruiterEmail?: string;
+  notes?: string;
+  nextAction?: string;
+  deadline?: string;
+}
+
 export interface InternshipMetrics {
   total: number;
   active: number;

@@ -1,6 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { apiFetch } from "../../../lib/api";
-import type { Internship, KanbanColumnId, InternshipMetrics } from "../types";
+import type {
+  Internship,
+  KanbanColumnId,
+  InternshipMetrics,
+  InternshipFormData,
+  StatusHistoryItem,
+} from "../types";
 
 export function useInternships() {
   const [internships, setInternships] = useState<Internship[]>([]);
@@ -48,6 +54,56 @@ export function useInternships() {
       ignore = true;
     };
   }, []);
+
+  // Create application
+  const createInternship = async (data: InternshipFormData): Promise<Internship> => {
+    setError(null);
+    const res = await apiFetch<Internship>("/internships", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    if (!res.data) {
+      throw new Error("No data returned from creation");
+    }
+    const created = res.data;
+    setInternships((prev) => [created, ...prev]);
+    return created;
+  };
+
+  // Update application
+  const updateInternship = async (
+    id: string,
+    data: Partial<InternshipFormData>
+  ): Promise<Internship> => {
+    setError(null);
+    const res = await apiFetch<Internship>(`/internships/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    });
+    if (!res.data) {
+      throw new Error("No data returned from update");
+    }
+    const updated = res.data;
+    setInternships((prev) =>
+      prev.map((item) => (item.id === id ? updated : item))
+    );
+    return updated;
+  };
+
+  // Delete application
+  const deleteInternship = async (id: string): Promise<void> => {
+    setError(null);
+    await apiFetch(`/internships/${id}`, {
+      method: "DELETE",
+    });
+    setInternships((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  // Fetch status history for an application
+  const fetchStatusHistory = async (id: string): Promise<StatusHistoryItem[]> => {
+    const res = await apiFetch<StatusHistoryItem[]>(`/internships/${id}/history`);
+    return res.data || [];
+  };
 
   // Optimistic status update with automatic rollback on error
   const updateStatus = async (id: string, newStatus: KanbanColumnId) => {
@@ -120,6 +176,10 @@ export function useInternships() {
     sortOrder,
     setSortOrder,
     updateStatus,
+    createInternship,
+    updateInternship,
+    deleteInternship,
+    fetchStatusHistory,
     refreshInternships: fetchInternships,
     metrics,
   };

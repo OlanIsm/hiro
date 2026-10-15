@@ -11,9 +11,12 @@ import {
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import { KANBAN_COLUMNS, type KanbanColumnId, type Internship } from "../types";
+import { KANBAN_COLUMNS, type KanbanColumnId, type Internship, type InternshipFormData } from "../types";
 import { KanbanColumn } from "./KanbanColumn";
 import { InternshipCard } from "./InternshipCard";
+import { InternshipFormModal } from "./InternshipFormModal";
+import { InternshipDetailModal } from "./InternshipDetailModal";
+import { DeleteConfirmModal } from "./DeleteConfirmModal";
 import { useInternships } from "../hooks/useInternships";
 import {
   Search,
@@ -25,6 +28,7 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
+  Plus,
 } from "lucide-react";
 
 export function KanbanBoard() {
@@ -41,11 +45,21 @@ export function KanbanBoard() {
     sortOrder,
     setSortOrder,
     updateStatus,
+    createInternship,
+    updateInternship,
+    deleteInternship,
+    fetchStatusHistory,
     refreshInternships,
     metrics,
   } = useInternships();
 
   const [activeInternship, setActiveInternship] = useState<Internship | null>(null);
+
+  // Modal States
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [editingInternship, setEditingInternship] = useState<Internship | null>(null);
+  const [detailInternship, setDetailInternship] = useState<Internship | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -78,12 +92,10 @@ export function KanbanBoard() {
     // Determine target column
     let targetStatus: KanbanColumnId | null = null;
 
-    // Is dropped directly on a column?
     const isColumn = KANBAN_COLUMNS.some((col) => col.id === overId);
     if (isColumn) {
       targetStatus = overId as KanbanColumnId;
     } else {
-      // Dropped on another card
       const targetCard = internships.find((i) => i.id === overId);
       if (targetCard) {
         targetStatus = targetCard.status;
@@ -109,6 +121,34 @@ export function KanbanBoard() {
       // Handled and reverted by useInternships
     }
   };
+
+  const handleFormSubmit = async (data: InternshipFormData) => {
+    if (editingInternship) {
+      const updated = await updateInternship(editingInternship.id, data);
+      if (detailInternship && detailInternship.id === editingInternship.id) {
+        setDetailInternship(updated);
+      }
+    } else {
+      await createInternship(data);
+    }
+  };
+
+  const handleCardClick = (internship: Internship) => {
+    setDetailInternship(internship);
+  };
+
+  const handleEditFromDetail = (internship: Internship) => {
+    setDetailInternship(null);
+    setEditingInternship(internship);
+    setIsFormModalOpen(true);
+  };
+
+  const handleDeleteFromDetail = (id: string) => {
+    setDetailInternship(null);
+    setDeletingId(id);
+  };
+
+  const deletingTarget = internships.find((i) => i.id === deletingId);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -254,7 +294,7 @@ export function KanbanBoard() {
               borderRadius: "6px",
               padding: "6px 12px",
               width: "100%",
-              maxWidth: "360px",
+              maxWidth: "340px",
             }}
           >
             <Search size={16} color="#9ca3af" />
@@ -311,7 +351,7 @@ export function KanbanBoard() {
               border: "1px solid #374151",
               borderRadius: "6px",
               color: "#e5e7eb",
-              padding: "6px 12px",
+              padding: "7px 12px",
               fontSize: "13px",
               cursor: "pointer",
             }}
@@ -332,7 +372,7 @@ export function KanbanBoard() {
               border: "1px solid #374151",
               borderRadius: "6px",
               color: "#e5e7eb",
-              padding: "6px 12px",
+              padding: "7px 12px",
               fontSize: "13px",
               cursor: loading ? "not-allowed" : "pointer",
             }}
@@ -340,6 +380,31 @@ export function KanbanBoard() {
           >
             <RefreshCw size={14} className={loading ? "spin" : ""} />
             <span>Refresh</span>
+          </button>
+
+          {/* Add Internship CTA Button */}
+          <button
+            onClick={() => {
+              setEditingInternship(null);
+              setIsFormModalOpen(true);
+            }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              backgroundColor: "#0284c7",
+              border: "none",
+              borderRadius: "6px",
+              color: "#ffffff",
+              padding: "7px 16px",
+              fontSize: "13px",
+              fontWeight: "600",
+              cursor: "pointer",
+              boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
+            }}
+          >
+            <Plus size={16} />
+            <span>Add Internship</span>
           </button>
         </div>
       </div>
@@ -417,6 +482,7 @@ export function KanbanBoard() {
                   description={col.description}
                   internships={columnItems}
                   onMoveToStatus={handleManualMove}
+                  onCardClick={handleCardClick}
                 />
               );
             })}
@@ -429,6 +495,42 @@ export function KanbanBoard() {
           </DragOverlay>
         </DndContext>
       )}
+
+      {/* Add / Edit Modal */}
+      <InternshipFormModal
+        isOpen={isFormModalOpen}
+        onClose={() => {
+          setIsFormModalOpen(false);
+          setEditingInternship(null);
+        }}
+        onSubmit={handleFormSubmit}
+        initialData={editingInternship}
+      />
+
+      {/* Detail Modal */}
+      <InternshipDetailModal
+        internship={detailInternship}
+        isOpen={Boolean(detailInternship)}
+        onClose={() => setDetailInternship(null)}
+        onEdit={handleEditFromDetail}
+        onDelete={handleDeleteFromDetail}
+        fetchHistory={fetchStatusHistory}
+      />
+
+      {/* Delete Confirmation Modal */}
+      <DeleteConfirmModal
+        isOpen={Boolean(deletingId)}
+        onClose={() => setDeletingId(null)}
+        onConfirm={async () => {
+          if (deletingId) {
+            await deleteInternship(deletingId);
+          }
+        }}
+        title="Delete Internship"
+        message={`Are you sure you want to delete ${
+          deletingTarget ? `"${deletingTarget.role} at ${deletingTarget.companyName}"` : "this application"
+        }? All associated status history will also be permanently deleted. This action cannot be undone.`}
+      />
     </div>
   );
 }
