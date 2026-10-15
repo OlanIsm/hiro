@@ -170,10 +170,10 @@ export function KanbanBoard() {
             boxShadow: "3px 3px 8px rgba(124, 58, 237, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
+          <span style={{ fontSize: "13.5px", fontWeight: "700", color: "#ffffff" }}>
             Total Applications
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
+          <span style={{ fontSize: "18px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.total}
           </span>
         </div>
@@ -191,10 +191,10 @@ export function KanbanBoard() {
             boxShadow: "3px 3px 8px rgba(217, 119, 6, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
+          <span style={{ fontSize: "13.5px", fontWeight: "700", color: "#ffffff" }}>
             Test Phase
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
+          <span style={{ fontSize: "18px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.test}
           </span>
         </div>
@@ -212,10 +212,10 @@ export function KanbanBoard() {
             boxShadow: "3px 3px 8px rgba(37, 99, 235, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
+          <span style={{ fontSize: "13.5px", fontWeight: "700", color: "#ffffff" }}>
             Interview Phase
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
+          <span style={{ fontSize: "18px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.interview}
           </span>
         </div>
@@ -233,10 +233,10 @@ export function KanbanBoard() {
             boxShadow: "3px 3px 8px rgba(5, 150, 105, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
+          <span style={{ fontSize: "13.5px", fontWeight: "700", color: "#ffffff" }}>
             Active In Pipeline
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
+          <span style={{ fontSize: "18px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.active}
           </span>
         </div>
@@ -269,10 +269,10 @@ export function KanbanBoard() {
               borderRadius: "12px",
               padding: "6px 12px",
               width: "100%",
-              maxWidth: "320px",
+              maxWidth: "340px",
             }}
           >
-            <Search size={15} color="#7c3aed" />
+            <Search size={16} color="#7c3aed" />
             <input
               type="text"
               placeholder="Search company, role, or skills..."
@@ -283,7 +283,7 @@ export function KanbanBoard() {
                 border: "none",
                 outline: "none",
                 color: "#1e1b4b",
-                fontSize: "12px",
+                fontSize: "13.5px",
                 width: "100%",
                 fontWeight: "500",
               }}
@@ -291,7 +291,7 @@ export function KanbanBoard() {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <SlidersHorizontal size={14} color="#7c3aed" />
+            <SlidersHorizontal size={15} color="#7c3aed" />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -301,8 +301,8 @@ export function KanbanBoard() {
                 border: "none",
                 borderRadius: "12px",
                 color: "#1e1b4b",
-                padding: "6px 10px",
-                fontSize: "12px",
+                padding: "6px 12px",
+                fontSize: "13.5px",
                 fontWeight: "600",
                 outline: "none",
                 cursor: "pointer",
@@ -329,14 +329,14 @@ export function KanbanBoard() {
               borderRadius: "12px",
               border: "none",
               color: "#475569",
-              padding: "7px 12px",
-              fontSize: "12px",
+              padding: "7px 14px",
+              fontSize: "13.5px",
               fontWeight: "600",
               cursor: "pointer",
             }}
             title="Sort by Last Updated"
           >
-            <ArrowUpDown size={13} color="#7c3aed" />
+            <ArrowUpDown size={14} color="#7c3aed" />
             <span>Updated: {sortOrder === "desc" ? "Newest" : "Oldest"}</span>
           </button>
 
@@ -351,14 +351,14 @@ export function KanbanBoard() {
               borderRadius: "12px",
               border: "none",
               color: "#475569",
-              padding: "7px 12px",
-              fontSize: "12px",
+              padding: "7px 14px",
+              fontSize: "13.5px",
               fontWeight: "600",
               cursor: loading ? "not-allowed" : "pointer",
             }}
             title="Refresh Board"
           >
-            <RefreshCw size={13} className={loading ? "spin" : ""} color="#7c3aed" />
+            <RefreshCw size={14} className={loading ? "spin" : ""} color="#7c3aed" />
             <span>Refresh</span>
           </button>
 
@@ -375,13 +375,13 @@ export function KanbanBoard() {
               gap: "6px",
               border: "none",
               borderRadius: "12px",
-              padding: "7px 16px",
-              fontSize: "12px",
+              padding: "7px 18px",
+              fontSize: "13.5px",
               fontWeight: "700",
               cursor: "pointer",
             }}
           >
-            <Plus size={15} />
+            <Plus size={16} />
             <span>Add Internship</span>
           </button>
         </div>
@@ -400,7 +400,7 @@ export function KanbanBoard() {
             alignItems: "center",
             justifyContent: "space-between",
             color: "#b91c1c",
-            fontSize: "13px",
+            fontSize: "14px",
             fontWeight: "500",
             flexShrink: 0,
           }}
@@ -416,7 +416,7 @@ export function KanbanBoard() {
               border: "none",
               color: "#dc2626",
               cursor: "pointer",
-              fontSize: "12px",
+              fontSize: "13px",
               fontWeight: "600",
               textDecoration: "underline",
             }}

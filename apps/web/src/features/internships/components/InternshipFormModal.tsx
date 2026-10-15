@@ -158,7 +158,7 @@ export function InternshipFormModal({
             borderBottom: "1px solid rgba(207, 213, 226, 0.5)",
           }}
         >
-          <h2 style={{ margin: 0, fontSize: "19px", fontWeight: "700", color: "#1e1b4b" }}>
+          <h2 style={{ margin: 0, fontSize: "21px", fontWeight: "700", color: "#1e1b4b" }}>
             {isEditing ? "Edit Internship Application" : "Add Internship Application"}
           </h2>
           <button
@@ -199,7 +199,7 @@ export function InternshipFormModal({
                 border: "1px solid #fecaca",
                 borderRadius: "12px",
                 color: "#b91c1c",
-                fontSize: "13px",
+                fontSize: "14px",
                 fontWeight: "500",
                 boxShadow: "inset 2px 2px 4px rgba(220, 38, 38, 0.1)",
               }}
@@ -211,7 +211,7 @@ export function InternshipFormModal({
           {/* Row 1: Company & Role */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Company Name *
               </label>
               <input
@@ -228,7 +228,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -236,7 +236,7 @@ export function InternshipFormModal({
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Role *
               </label>
               <input
@@ -253,7 +253,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -264,7 +264,7 @@ export function InternshipFormModal({
           {/* Row 2: Status & Applied Date */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Status
               </label>
               <select
@@ -278,7 +278,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   cursor: "pointer",
                   outline: "none",
@@ -293,7 +293,7 @@ export function InternshipFormModal({
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Application Date
               </label>
               <input
@@ -308,7 +308,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -318,7 +318,7 @@ export function InternshipFormModal({
 
           {/* Skills Input */}
           <div>
-            <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+            <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
               Skills & Tags
             </label>
             <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
@@ -336,7 +336,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   outline: "none",
                 }}
               />
@@ -349,12 +349,12 @@ export function InternshipFormModal({
                   border: "none",
                   borderRadius: "12px",
                   color: "#7c3aed",
-                  fontWeight: "600",
+                  fontWeight: "700",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   gap: "6px",
-                  fontSize: "13px",
+                  fontSize: "14px",
                 }}
               >
                 <Plus size={16} /> Add
@@ -374,8 +374,8 @@ export function InternshipFormModal({
                       border: "1px solid rgba(124, 58, 237, 0.2)",
                       color: "#6d28d9",
                       fontWeight: "600",
-                      fontSize: "12px",
-                      padding: "4px 10px",
+                      fontSize: "13px",
+                      padding: "4px 11px",
                       borderRadius: "9999px",
                       boxShadow: "2px 2px 5px #d0d6e2, -2px -2px 5px #ffffff",
                     }}
@@ -394,7 +394,7 @@ export function InternshipFormModal({
                         alignItems: "center",
                       }}
                     >
-                      <X size={13} />
+                      <X size={14} />
                     </button>
                   </span>
                 ))}
@@ -405,7 +405,7 @@ export function InternshipFormModal({
           {/* Row 3: Job URL & Recruiter Email */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Job URL
               </label>
               <input
@@ -421,7 +421,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -429,7 +429,7 @@ export function InternshipFormModal({
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Recruiter Email
               </label>
               <input
@@ -445,7 +445,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -456,7 +456,7 @@ export function InternshipFormModal({
           {/* Row 4: Next Action & Deadline */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Next Action
               </label>
               <input
@@ -472,7 +472,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -480,7 +480,7 @@ export function InternshipFormModal({
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+              <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
                 Deadline
               </label>
               <input
@@ -495,7 +495,7 @@ export function InternshipFormModal({
                   border: "1px solid rgba(255, 255, 255, 0.7)",
                   borderRadius: "12px",
                   color: "#1e1b4b",
-                  fontSize: "13px",
+                  fontSize: "14.5px",
                   boxSizing: "border-box",
                   outline: "none",
                 }}
@@ -505,7 +505,7 @@ export function InternshipFormModal({
 
           {/* Job Description & Notes */}
           <div>
-            <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+            <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
               Job Description
             </label>
             <textarea
@@ -521,7 +521,7 @@ export function InternshipFormModal({
                 border: "1px solid rgba(255, 255, 255, 0.7)",
                 borderRadius: "12px",
                 color: "#1e1b4b",
-                fontSize: "13px",
+                fontSize: "14.5px",
                 boxSizing: "border-box",
                 resize: "vertical",
                 outline: "none",
@@ -530,7 +530,7 @@ export function InternshipFormModal({
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "13px", fontWeight: "600", color: "#475569", marginBottom: "6px" }}>
+            <label style={{ display: "block", fontSize: "14px", fontWeight: "700", color: "#475569", marginBottom: "6px" }}>
               Personal Notes
             </label>
             <textarea
@@ -546,7 +546,7 @@ export function InternshipFormModal({
                 border: "1px solid rgba(255, 255, 255, 0.7)",
                 borderRadius: "12px",
                 color: "#1e1b4b",
-                fontSize: "13px",
+                fontSize: "14.5px",
                 boxSizing: "border-box",
                 resize: "vertical",
                 outline: "none",
@@ -575,7 +575,7 @@ export function InternshipFormModal({
                 border: "none",
                 borderRadius: "12px",
                 color: "#64748b",
-                fontSize: "13px",
+                fontSize: "14.5px",
                 fontWeight: "600",
                 cursor: "pointer",
               }}
@@ -591,8 +591,8 @@ export function InternshipFormModal({
                 border: "none",
                 borderRadius: "12px",
                 color: "#ffffff",
-                fontWeight: "600",
-                fontSize: "13px",
+                fontWeight: "700",
+                fontSize: "14.5px",
                 cursor: submitting ? "not-allowed" : "pointer",
                 opacity: submitting ? 0.7 : 1,
               }}

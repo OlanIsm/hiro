@@ -59,12 +59,12 @@ export function DeleteConfirmModal({
           >
             <AlertTriangle size={24} />
           </div>
-          <h3 style={{ margin: 0, fontSize: "18px", fontWeight: "700", color: "#1e1b4b" }}>
+          <h3 style={{ margin: 0, fontSize: "20px", fontWeight: "700", color: "#1e1b4b" }}>
             {title}
           </h3>
         </div>
 
-        <p style={{ margin: "0 0 24px 0", fontSize: "14px", color: "#64748b", lineHeight: "1.6" }}>
+        <p style={{ margin: "0 0 24px 0", fontSize: "15px", color: "#64748b", lineHeight: "1.6" }}>
           {message}
         </p>
 
@@ -77,7 +77,7 @@ export function DeleteConfirmModal({
               border: "none",
               borderRadius: "12px",
               color: "#64748b",
-              fontSize: "13px",
+              fontSize: "14.5px",
               fontWeight: "600",
               cursor: "pointer",
             }}
@@ -96,7 +96,7 @@ export function DeleteConfirmModal({
               border: "none",
               borderRadius: "12px",
               color: "#ffffff",
-              fontSize: "13px",
+              fontSize: "14.5px",
               fontWeight: "600",
               cursor: "pointer",
               transition: "all 0.15s ease",

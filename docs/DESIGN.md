@@ -13,13 +13,29 @@ box-shadow: 36px 36px 72px #bebebe,
 
 ---
 
-## 2. Palette & Semantic Theming
+## 2. Typography Standard — Nunito Sans
+All interface surfaces in Hiro must strictly use **Nunito Sans** as the official brand typography for maximum readability, friendliness, and modern aesthetics.
+
+- **Font Family**: `'Nunito Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
+- **Inheritance**: Form controls (`input`, `button`, `select`, `textarea`) must explicitly inherit `font-family: inherit`.
+- **Enlarged Legibility Scale**:
+  - **Brand & Main Headings (H1/H2)**: `20px` to `28px` | `font-weight: 800` to `900`
+  - **Column Titles & Section Headers**: `14.5px` to `15.5px` | `font-weight: 800` | uppercase / tracking
+  - **Card Titles / Role Titles**: `15.5px` | `font-weight: 700`
+  - **Form Labels & Field Inputs**: `14px` to `15px` | `font-weight: 700` (labels), `500` (inputs)
+  - **Buttons & Navigation Items**: `13.5px` to `14.5px` | `font-weight: 700`
+  - **Top Metric Cards**: Labels `13.5px` (`font-weight: 700`) | Counts `18px` (`font-weight: 800`)
+  - **Secondary Metadata, Tags, & Dates**: `11.5px` to `13px` | `font-weight: 600` to `700` (Never below 11.5px)
+
+---
+
+## 3. Palette & Semantic Theming
 - **Canvas Base**: `#e8ecf4` (Light soft-slate white canvas)
 - **Primary Brand Purple**: `#7c3aed` (Tailwind violet-600)
 - **Secondary Vivid Purple**: `#8b5cf6` (Tailwind violet-500)
 - **Deep Accent Purple**: `#6d28d9` (Tailwind violet-700)
 - **Soft Purple Tint**: `#ede9fe` (Tailwind violet-100)
-- **Text & Typography**:
+- **Text & Typography Colors**:
   - Headings & Primary Text: `#1e1b4b` (Deep violet-black)
   - Secondary Labels & Meta: `#475569` (Slate-600)
   - Muted / Placeholders: `#94a3b8` (Slate-400)

@@ -86,7 +86,7 @@ export function KanbanColumn({
             <h3
               style={{
                 margin: 0,
-                fontSize: "13px",
+                fontSize: "14.5px",
                 fontWeight: "800",
                 color: "#1e1b4b",
                 textTransform: "uppercase",
@@ -98,11 +98,11 @@ export function KanbanColumn({
           </div>
           <span
             style={{
-              fontSize: "11px",
+              fontSize: "12.5px",
               fontWeight: "700",
               color: columnTheme.text,
               backgroundColor: columnTheme.lightBg,
-              padding: "1px 8px",
+              padding: "2px 9px",
               borderRadius: "12px",
               boxShadow: "inset 1px 1px 2px #d0d6e2, inset -1px -1px 2px #ffffff",
             }}
@@ -110,7 +110,7 @@ export function KanbanColumn({
             {internships.length}
           </span>
         </div>
-        <p style={{ margin: 0, fontSize: "11px", color: "#64748b" }}>
+        <p style={{ margin: 0, fontSize: "12px", color: "#64748b" }}>
           {description}
         </p>
       </div>
@@ -153,7 +153,7 @@ export function KanbanColumn({
               }}
             >
               <Inbox size={20} color="#a5b4fc" />
-              <span style={{ fontSize: "12px", fontWeight: "500" }}>No applications yet</span>
+              <span style={{ fontSize: "13.5px", fontWeight: "600" }}>No applications yet</span>
             </div>
           )}
         </SortableContext>

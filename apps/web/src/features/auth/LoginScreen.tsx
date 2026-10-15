@@ -53,7 +53,7 @@ export function LoginScreen() {
         justifyContent: "center",
         backgroundColor: "#e8ecf4",
         color: "#1e1b4b",
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: "var(--sans)",
         padding: "20px",
         boxSizing: "border-box",
       }}
@@ -61,7 +61,7 @@ export function LoginScreen() {
       <div
         style={{
           width: "100%",
-          maxWidth: "420px",
+          maxWidth: "430px",
           padding: "36px",
           borderRadius: "32px",
           background: "linear-gradient(145deg, #f0f4fc, #dfe4ee)",
@@ -72,8 +72,8 @@ export function LoginScreen() {
         <div style={{ textAlign: "center", marginBottom: "28px" }}>
           <div
             style={{
-              width: "56px",
-              height: "56px",
+              width: "58px",
+              height: "58px",
               margin: "0 auto 16px auto",
               borderRadius: "20px",
               background: "linear-gradient(145deg, #8b5cf6, #7c3aed)",
@@ -84,12 +84,12 @@ export function LoginScreen() {
               color: "#ffffff",
             }}
           >
-            {initialized ? <Lock size={24} /> : <Sparkles size={24} />}
+            {initialized ? <Lock size={26} /> : <Sparkles size={26} />}
           </div>
 
           <h1
             style={{
-              fontSize: "26px",
+              fontSize: "28px",
               fontWeight: "900",
               margin: "0 0 6px 0",
               color: "#5b21b6",
@@ -98,7 +98,7 @@ export function LoginScreen() {
           >
             Hiro
           </h1>
-          <p style={{ margin: 0, fontSize: "14px", color: "#64748b" }}>
+          <p style={{ margin: 0, fontSize: "15px", color: "#64748b" }}>
             {initialized
               ? "Welcome back. Enter password to unlock."
               : "First-run setup: Create your master password."}
@@ -113,7 +113,7 @@ export function LoginScreen() {
               borderRadius: "16px",
               boxShadow: "inset 2px 2px 5px rgba(239, 68, 68, 0.2)",
               color: "#dc2626",
-              fontSize: "13px",
+              fontSize: "14px",
               marginBottom: "20px",
               fontWeight: "500",
             }}
@@ -128,8 +128,8 @@ export function LoginScreen() {
               htmlFor="password"
               style={{
                 display: "block",
-                fontSize: "13px",
-                fontWeight: "600",
+                fontSize: "14px",
+                fontWeight: "700",
                 marginBottom: "8px",
                 color: "#475569",
               }}
@@ -152,7 +152,7 @@ export function LoginScreen() {
                 backgroundColor: "#e4e8f1",
                 boxShadow: "inset 4px 4px 8px #d0d6e2, inset -4px -4px 8px #ffffff",
                 color: "#1e1b4b",
-                fontSize: "14px",
+                fontSize: "15px",
                 boxSizing: "border-box",
               }}
               required
@@ -165,8 +165,8 @@ export function LoginScreen() {
                 htmlFor="confirmPassword"
                 style={{
                   display: "block",
-                  fontSize: "13px",
-                  fontWeight: "600",
+                  fontSize: "14px",
+                  fontWeight: "700",
                   marginBottom: "8px",
                   color: "#475569",
                 }}
@@ -189,7 +189,7 @@ export function LoginScreen() {
                   backgroundColor: "#e4e8f1",
                   boxShadow: "inset 4px 4px 8px #d0d6e2, inset -4px -4px 8px #ffffff",
                   color: "#1e1b4b",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   boxSizing: "border-box",
                 }}
                 required
@@ -206,7 +206,7 @@ export function LoginScreen() {
               padding: "13px 20px",
               borderRadius: "18px",
               border: "none",
-              fontSize: "14px",
+              fontSize: "15.5px",
               fontWeight: "700",
               cursor: submitting ? "not-allowed" : "pointer",
               opacity: submitting ? 0.7 : 1,

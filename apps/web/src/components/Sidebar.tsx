@@ -77,7 +77,7 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
                 <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                   <span
                     style={{
-                      fontSize: "20px",
+                      fontSize: "22px",
                       fontWeight: "900",
                       color: "#5b21b6",
                       letterSpacing: "-0.03em",
@@ -87,11 +87,11 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
                   </span>
                   <span
                     style={{
-                      fontSize: "10px",
+                      fontSize: "11px",
                       fontWeight: "700",
                       backgroundColor: "#ede9fe",
                       color: "#7c3aed",
-                      padding: "2px 7px",
+                      padding: "2px 8px",
                       borderRadius: "10px",
                       boxShadow: "inset 1px 1px 2px #d0d6e2, inset -1px -1px 2px #ffffff",
                     }}
@@ -99,7 +99,7 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
                     MVP
                   </span>
                 </div>
-                <div style={{ fontSize: "11px", color: "#64748b", fontWeight: "600" }}>
+                <div style={{ fontSize: "12px", color: "#64748b", fontWeight: "600" }}>
                   Tracker
                 </div>
               </div>
@@ -147,13 +147,13 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
               borderRadius: "14px",
               color: "#ffffff",
               fontWeight: "700",
-              fontSize: "13px",
+              fontSize: "14.5px",
               cursor: "pointer",
               transition: "all 0.15s ease",
             }}
             title="Kanban Board"
           >
-            <LayoutDashboard size={18} />
+            <LayoutDashboard size={19} />
             {isExpanded && <span>Kanban Board</span>}
           </button>
 
@@ -171,12 +171,12 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
               borderRadius: "14px",
               color: "#6d28d9",
               fontWeight: "600",
-              fontSize: "13px",
+              fontSize: "14px",
               cursor: "pointer",
             }}
             title="All Applications"
           >
-            <Briefcase size={18} />
+            <Briefcase size={19} />
             {isExpanded && <span>Applications</span>}
           </button>
 
@@ -194,12 +194,12 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
               borderRadius: "14px",
               color: "#6d28d9",
               fontWeight: "600",
-              fontSize: "13px",
+              fontSize: "14px",
               cursor: "pointer",
             }}
             title="Status History"
           >
-            <History size={18} />
+            <History size={19} />
             {isExpanded && <span>History</span>}
           </button>
 
@@ -224,12 +224,12 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
               borderRadius: "14px",
               color: "#6d28d9",
               fontWeight: "600",
-              fontSize: "13px",
+              fontSize: "14px",
               cursor: "pointer",
             }}
             title="Export CSV Data"
           >
-            <Download size={18} />
+            <Download size={19} />
             {isExpanded && <span>Export CSV</span>}
           </button>
         </nav>
@@ -272,12 +272,12 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
             borderRadius: "14px",
             color: "#dc2626",
             fontWeight: "700",
-            fontSize: "13px",
+            fontSize: "14px",
             cursor: "pointer",
           }}
           title="Log out of session"
         >
-          <LogOut size={18} />
+          <LogOut size={19} />
           {isExpanded && <span>Log Out</span>}
         </button>
       </div>

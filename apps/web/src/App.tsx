@@ -20,7 +20,7 @@ function Dashboard() {
         overflow: "hidden",
         backgroundColor: "#e8ecf4",
         color: "#1e1b4b",
-        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        fontFamily: "var(--sans)",
       }}
     >
       {/* Collapsible Neumorphic Purple Sidebar */}
@@ -58,7 +58,7 @@ function Dashboard() {
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <span
               style={{
-                fontSize: "18px",
+                fontSize: "21px",
                 fontWeight: "900",
                 color: "#5b21b6",
                 letterSpacing: "-0.03em",
@@ -68,8 +68,8 @@ function Dashboard() {
             </span>
             <span
               style={{
-                fontSize: "11px",
-                padding: "2px 8px",
+                fontSize: "12px",
+                padding: "2px 9px",
                 backgroundColor: "#ede9fe",
                 borderRadius: "12px",
                 color: "#7c3aed",
@@ -88,15 +88,15 @@ function Dashboard() {
                 alignItems: "center",
                 gap: "6px",
                 color: "#7c3aed",
-                fontSize: "12px",
+                fontSize: "13.5px",
                 fontWeight: "700",
                 backgroundColor: "#e8ecf4",
-                padding: "6px 12px",
+                padding: "6px 14px",
                 borderRadius: "12px",
                 boxShadow: "inset 2px 2px 4px #d0d6e2, inset -2px -2px 4px #ffffff",
               }}
             >
-              <LayoutDashboard size={14} />
+              <LayoutDashboard size={15} />
               <span>Kanban Board</span>
             </div>
 
@@ -112,12 +112,12 @@ function Dashboard() {
                 border: "none",
                 color: "#ef4444",
                 fontWeight: "700",
-                fontSize: "12px",
+                fontSize: "13.5px",
                 cursor: "pointer",
               }}
               title="Log out of local session"
             >
-              <LogOut size={14} />
+              <LogOut size={15} />
               <span>Log Out</span>
             </button>
           </div>
@@ -156,7 +156,8 @@ function MainApp() {
           backgroundColor: "#e8ecf4",
           color: "#7c3aed",
           fontWeight: "600",
-          fontFamily: "system-ui, sans-serif",
+          fontSize: "15px",
+          fontFamily: "var(--sans)",
         }}
       >
         Checking workspace authorization...
