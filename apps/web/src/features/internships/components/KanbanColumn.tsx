@@ -43,18 +43,18 @@ export function KanbanColumn({
       style={{
         flex: "1 1 0",
         minWidth: "220px",
-        backgroundColor: isOver ? "#e1e7f3" : "#e8ecf4",
-        borderRadius: "20px",
+        backgroundColor: isOver ? "#dce2ee" : "#e1e6f0",
+        borderRadius: "22px",
         boxShadow: isOver
-          ? "inset 4px 4px 10px #cfd5e2, inset -4px -4px 10px #ffffff, 0 0 0 2px #8b5cf6"
-          : "6px 6px 14px #cfd5e2, -6px -6px 14px #ffffff",
+          ? "inset 6px 6px 14px #c2c9d6, inset -6px -6px 14px #ffffff, 0 0 0 2px #7c3aed"
+          : "inset 5px 5px 12px #c5cddb, inset -5px -5px 12px #ffffff",
         display: "flex",
         flexDirection: "column",
         height: "100%",
         maxHeight: "100%",
         overflow: "hidden",
         transition: "all 0.2s ease",
-        border: "1px solid rgba(255, 255, 255, 0.7)",
+        border: "1px solid rgba(255, 255, 255, 0.6)",
       }}
     >
       {/* Column Header */}
@@ -146,8 +146,8 @@ export function KanbanColumn({
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: "14px",
-                backgroundColor: "#e4e8f1",
-                boxShadow: "inset 2px 2px 5px #d0d6e2, inset -2px -2px 5px #ffffff",
+                backgroundColor: "rgba(255, 255, 255, 0.35)",
+                border: "1px dashed rgba(160, 174, 192, 0.6)",
                 color: "#94a3b8",
                 gap: "4px",
               }}

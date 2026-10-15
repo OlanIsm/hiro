@@ -57,15 +57,21 @@ box-shadow: 36px 36px 72px #bebebe,
 - **Border**: `1px solid rgba(255, 255, 255, 0.8)`
 - **Shadow**: `20px 20px 60px #cfd5e2, -20px -20px 60px #ffffff`
 
-### C. Kanban Columns & Cards (Compact & Crisp)
-- **Columns**:
-  - `borderRadius: "20px"`
-  - `boxShadow: 6px 6px 14px #cfd5e2, -6px -6px 14px #ffffff`
+### C. Kanban Columns & Cards (Sunken Well & Raised Card Hierarchy)
+- **Columns (Sunken Well / Menjorok ke Dalam)**:
+  - `borderRadius: "22px"`
+  - `backgroundColor: "#e1e6f0"` (Drag-over: `#dce2ee`)
+  - `boxShadow: inset 5px 5px 12px #c5cddb, inset -5px -5px 12px #ffffff`
+  - Drag-over active: `inset 6px 6px 14px #c2c9d6, inset -6px -6px 14px #ffffff, 0 0 0 2px #7c3aed`
   - Fill 100% column height with internal card scrolling (`overflow-y: auto`).
-- **Cards**:
+  - Empty State: Soft dashed border `1px dashed rgba(160, 174, 192, 0.6)` on semi-transparent background `rgba(255, 255, 255, 0.35)`.
+- **Cards (Convex Tile / Menonjol ke Luar)**:
   - `borderRadius: "16px"`
   - `padding: "12px 14px"`
-  - Compact tactile convex surfaces with dual shadows.
+  - `background: linear-gradient(145deg, #ffffff, #eaf0f9)`
+  - `boxShadow: 6px 6px 14px #b8c1d1, -5px -5px 12px #ffffff` (Overlay drag: `16px 16px 32px #b0b9ca, -12px -12px 24px #ffffff`)
+  - `border: 1px solid rgba(255, 255, 255, 0.95)`
+  - Tactile elevated cards pop out prominently against the sunken column well.
 
 ### D. Form Inputs, Search, & Textareas (Surface Inset)
 - **Radius**: `12px` to `16px`

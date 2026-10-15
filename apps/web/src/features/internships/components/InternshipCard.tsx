@@ -33,16 +33,16 @@ export function InternshipCard({
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.35 : 1,
-    background: "linear-gradient(145deg, #f3f6fd, #e4e9f3)",
+    background: "linear-gradient(145deg, #ffffff, #eaf0f9)",
     borderRadius: "16px",
     padding: "12px 14px",
     marginBottom: "10px",
     cursor: "grab",
     userSelect: "none",
     boxShadow: isOverlay
-      ? "14px 14px 28px #b8c1d1, -14px -14px 28px #ffffff"
-      : "5px 5px 12px #cfd6e4, -5px -5px 12px #ffffff",
-    border: "1px solid rgba(255, 255, 255, 0.7)",
+      ? "16px 16px 32px #b0b9ca, -12px -12px 24px #ffffff"
+      : "6px 6px 14px #b8c1d1, -5px -5px 12px #ffffff",
+    border: "1px solid rgba(255, 255, 255, 0.95)",
   };
 
   const formattedAppliedDate = new Date(internship.appliedAt).toLocaleDateString(
