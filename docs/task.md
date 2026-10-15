@@ -152,23 +152,23 @@ troubleshooting.
 
 ## Phase 7 --- Gmail Integration (After MVP)
 
--   [ ] Configure Google Cloud project and Gmail API credentials.
--   [ ] Implement OAuth 2.0 authorization and callback.
--   [ ] Request the narrowest appropriate read-only Gmail scope.
--   [ ] Encrypt refresh tokens at rest and keep all tokens server-side.
--   [ ] Implement connection status and disconnect.
--   [ ] Implement manual email sync first.
--   [ ] Fetch relevant message metadata and only retrieve message
+-   [x] Configure Google Cloud project and Gmail API credentials.
+-   [x] Implement OAuth 2.0 authorization and callback.
+-   [x] Request the narrowest appropriate read-only Gmail scope.
+-   [x] Encrypt refresh tokens at rest and keep all tokens server-side.
+-   [x] Implement connection status and disconnect.
+-   [x] Implement manual email sync first.
+-   [x] Fetch relevant message metadata and only retrieve message
     content when necessary and authorized.
--   [ ] Deduplicate messages by Gmail message ID.
--   [ ] Match messages using sender, domain, company, role, and
+-   [x] Deduplicate messages by Gmail message ID.
+-   [x] Match messages using sender, domain, company, role, and
     recruitment keywords.
--   [ ] Create reviewable status recommendations with confidence and
+-   [x] Create reviewable status recommendations with confidence and
     evidence.
--   [ ] Require confirmation for ambiguous matches or status changes.
--   [ ] Allow manual mapping of an email to an internship.
--   [ ] Add sync timestamps and useful failure messages.
--   [ ] Test irrelevant email, duplicate email, ambiguous matching, and
+-   [x] Require confirmation for ambiguous matches or status changes.
+-   [x] Allow manual mapping of an email to an internship.
+-   [x] Add sync timestamps and useful failure messages.
+-   [x] Test irrelevant email, duplicate email, ambiguous matching, and
     token revocation cases.
 
 **Acceptance criteria** - Gmail is optional and the core application

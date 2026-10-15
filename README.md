@@ -165,6 +165,32 @@ Hiro provides instant data export directly from the UI or via API:
 
 ---
 
+## 📬 Gmail Integration (Phase 7)
+
+Hiro includes an intelligent, privacy-first Gmail synchronization engine to automatically detect recruitment stages (Online Assessments, Interview Invites, Offer Letters):
+
+### 1. Google Cloud Setup
+1. Create a Google Cloud project at [console.cloud.google.com](https://console.cloud.google.com).
+2. Enable the **Gmail API**.
+3. Configure the OAuth Consent Screen and create an **OAuth 2.0 Web Client ID**:
+   - Authorized redirect URI: `http://127.0.0.1:4000/api/gmail/callback`
+4. Add the credentials to your `.env` file:
+   ```env
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
+   GOOGLE_REDIRECT_URI="http://127.0.0.1:4000/api/gmail/callback"
+   GMAIL_TOKEN_ENCRYPTION_KEY="your-32-byte-hex-encryption-key" # Optional, defaults to hashed SESSION_SECRET
+   ```
+
+### 2. Privacy & Security Safeguards
+- **Narrowest Scope**: Only requests `https://www.googleapis.com/auth/gmail.readonly`.
+- **Encrypted at Rest**: Refresh tokens are encrypted with `AES-256-GCM` using `scryptSync` derived keys and stored strictly server-side.
+- **No Silent Updates**: Ambiguous matches or confidence < 65% are flagged for human review. Applications will never silently change status without user verification.
+- **Audit History**: Applying a recommendation atomically updates the Kanban card and writes a `StatusHistory` record with `source: GMAIL` and the associated email ID.
+- **Offline / Sandbox Simulation**: You can test recruitment detection at any time using the "Simulate Test Email Match" button in the Gmail modal without live Google credentials.
+
+---
+
 ## 🛠️ Troubleshooting
 
 - **Port 4000 already in use**: The launcher checks `http://127.0.0.1:4000/api/health` before starting to avoid duplicate processes. If a stale node process is holding port 4000, you can terminate it in PowerShell:

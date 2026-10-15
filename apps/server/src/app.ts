@@ -6,6 +6,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { internshipRouter } from "./routes/internshipRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
+import { gmailRouter } from "./routes/gmailRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { requireAuth } from "./middleware/requireAuth.js";
 
@@ -63,6 +64,9 @@ app.use("/api/auth", authRouter);
 
 // Protected internship CRUD and history routes
 app.use("/api/internships", requireAuth, internshipRouter);
+
+// Protected Gmail integration routes
+app.use("/api/gmail", requireAuth, gmailRouter);
 
 // Serve built frontend in production / local launcher mode
 const candidatePaths = [

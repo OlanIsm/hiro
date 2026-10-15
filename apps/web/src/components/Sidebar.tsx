@@ -7,15 +7,24 @@ import {
   LogOut,
   Sparkles,
   Download,
+  Mail,
 } from "lucide-react";
 
 interface SidebarProps {
   isExpanded: boolean;
   onToggle: () => void;
   onLogout: () => void;
+  onOpenGmailSync?: () => void;
+  pendingRecsCount?: number;
 }
 
-export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
+export function Sidebar({
+  isExpanded,
+  onToggle,
+  onLogout,
+  onOpenGmailSync,
+  pendingRecsCount = 0,
+}: SidebarProps) {
   return (
     <aside
       style={{
@@ -155,6 +164,81 @@ export function Sidebar({ isExpanded, onToggle, onLogout }: SidebarProps) {
           >
             <LayoutDashboard size={19} />
             {isExpanded && <span>Kanban Board</span>}
+          </button>
+
+          {/* Gmail Sync & Smart Recommendations */}
+          <button
+            onClick={onOpenGmailSync}
+            className="neu-button"
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: isExpanded ? "flex-start" : "center",
+              gap: "12px",
+              padding: isExpanded ? "10px 14px" : "10px 0",
+              border: "none",
+              borderRadius: "14px",
+              color: "#6d28d9",
+              fontWeight: "600",
+              fontSize: "14px",
+              cursor: "pointer",
+              position: "relative",
+            }}
+            title="Gmail Sync & Status Detection"
+          >
+            <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <Mail size={19} />
+              {pendingRecsCount > 0 && !isExpanded && (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "-6px",
+                    right: "-8px",
+                    backgroundColor: "#7c3aed",
+                    color: "#ffffff",
+                    fontSize: "10px",
+                    fontWeight: "800",
+                    width: "16px",
+                    height: "16px",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 2px 5px rgba(124, 58, 237, 0.4)",
+                  }}
+                >
+                  {pendingRecsCount}
+                </span>
+              )}
+            </div>
+            {isExpanded && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <span>Gmail Sync</span>
+                {pendingRecsCount > 0 && (
+                  <span
+                    style={{
+                      backgroundColor: "#7c3aed",
+                      color: "#ffffff",
+                      fontSize: "11px",
+                      fontWeight: "800",
+                      padding: "2px 7px",
+                      borderRadius: "10px",
+                      boxShadow: "0 2px 4px rgba(124, 58, 237, 0.3)",
+                    }}
+                  >
+                    {pendingRecsCount}
+                  </span>
+                )}
+              </div>
+            )}
           </button>
 
           {/* Secondary nav: Applications */}
