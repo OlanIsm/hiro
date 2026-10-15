@@ -1,7 +1,4 @@
-const API_BASE =
-  typeof window !== "undefined" && window.location.port === "4000"
-    ? "/api"
-    : "http://127.0.0.1:4000/api";
+export const API_BASE = "/api";
 
 export interface ApiResponse<T> {
   data?: T;
@@ -19,7 +16,7 @@ export async function apiFetch<T>(
   const url = `${API_BASE}${endpoint}`;
   const response = await fetch(url, {
     ...options,
-    credentials: "include", // Send and receive session cookies
+    credentials: "include", // Always include session cookies
     headers: {
       "Content-Type": "application/json",
       ...options.headers,
@@ -29,7 +26,14 @@ export async function apiFetch<T>(
   const json = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(json.error?.message || `Request failed with status ${response.status}`);
+    if (response.status === 401 && endpoint !== "/auth/status") {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("hiro:unauthorized"));
+      }
+    }
+    throw new Error(
+      json.error?.message || json.message || `Request failed with status ${response.status}`
+    );
   }
 
   return json;

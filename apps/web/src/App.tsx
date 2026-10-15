@@ -7,10 +7,7 @@ import { Sidebar } from "./components/Sidebar";
 import { GmailSyncModal } from "./features/gmail/GmailSyncModal";
 import { LayoutDashboard, LogOut, Mail } from "lucide-react";
 
-const API_BASE =
-  typeof window !== "undefined" && window.location.port === "4000"
-    ? "/api"
-    : "http://127.0.0.1:4000/api";
+const API_BASE = "/api";
 
 function Dashboard() {
   const { logout } = useAuth();

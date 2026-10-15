@@ -37,10 +37,7 @@ interface GmailSyncModalProps {
   onRefreshBoard: () => void;
 }
 
-const API_BASE =
-  typeof window !== "undefined" && window.location.port === "4000"
-    ? "/api"
-    : "http://127.0.0.1:4000/api";
+const API_BASE = "/api";
 
 export function GmailSyncModal({ isOpen, onClose, onRefreshBoard }: GmailSyncModalProps) {
   const [status, setStatus] = useState<GmailStatus | null>(null);

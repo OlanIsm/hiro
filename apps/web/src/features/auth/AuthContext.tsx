@@ -49,8 +49,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       });
 
+    const handleUnauthorized = () => {
+      setAuthenticated(false);
+    };
+
+    window.addEventListener("hiro:unauthorized", handleUnauthorized);
+
     return () => {
       ignore = true;
+      window.removeEventListener("hiro:unauthorized", handleUnauthorized);
     };
   }, []);
 

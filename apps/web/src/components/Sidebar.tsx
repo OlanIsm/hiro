@@ -290,11 +290,7 @@ export function Sidebar({
           {/* Export CSV Data */}
           <button
             onClick={() => {
-              const exportUrl =
-                typeof window !== "undefined" && window.location.port === "4000"
-                  ? "/api/internships/export?format=csv"
-                  : "http://127.0.0.1:4000/api/internships/export?format=csv";
-              window.open(exportUrl, "_blank");
+              window.open("/api/internships/export?format=csv", "_blank");
             }}
             className="neu-button"
             style={{
