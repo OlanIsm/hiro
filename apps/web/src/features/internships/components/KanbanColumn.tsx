@@ -41,17 +41,18 @@ export function KanbanColumn({
     <div
       ref={setNodeRef}
       style={{
-        flex: "1 1 280px",
-        minWidth: "260px",
+        flex: "1 1 0",
+        minWidth: "220px",
         backgroundColor: isOver ? "#e1e7f3" : "#e8ecf4",
-        borderRadius: "28px",
+        borderRadius: "20px",
         boxShadow: isOver
           ? "inset 4px 4px 10px #cfd5e2, inset -4px -4px 10px #ffffff, 0 0 0 2px #8b5cf6"
-          : "8px 8px 20px #cfd5e2, -8px -8px 20px #ffffff",
+          : "6px 6px 14px #cfd5e2, -6px -6px 14px #ffffff",
         display: "flex",
         flexDirection: "column",
-        height: "calc(100vh - 220px)",
-        minHeight: "460px",
+        height: "100%",
+        maxHeight: "100%",
+        overflow: "hidden",
         transition: "all 0.2s ease",
         border: "1px solid rgba(255, 255, 255, 0.7)",
       }}
@@ -59,8 +60,9 @@ export function KanbanColumn({
       {/* Column Header */}
       <div
         style={{
-          padding: "20px 22px 14px 22px",
+          padding: "10px 14px 8px 14px",
           borderBottom: "1px solid rgba(207, 213, 226, 0.5)",
+          flexShrink: 0,
         }}
       >
         <div
@@ -68,27 +70,27 @@ export function KanbanColumn({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "4px",
+            marginBottom: "2px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <span
               style={{
-                width: "10px",
-                height: "10px",
+                width: "8px",
+                height: "8px",
                 borderRadius: "50%",
                 backgroundColor: columnTheme.dot,
-                boxShadow: `0 0 8px ${columnTheme.dot}`,
+                boxShadow: `0 0 6px ${columnTheme.dot}`,
               }}
             />
             <h3
               style={{
                 margin: 0,
-                fontSize: "14px",
+                fontSize: "13px",
                 fontWeight: "800",
                 color: "#1e1b4b",
                 textTransform: "uppercase",
-                letterSpacing: "0.06em",
+                letterSpacing: "0.05em",
               }}
             >
               {title}
@@ -96,19 +98,19 @@ export function KanbanColumn({
           </div>
           <span
             style={{
-              fontSize: "12px",
+              fontSize: "11px",
               fontWeight: "700",
               color: columnTheme.text,
               backgroundColor: columnTheme.lightBg,
-              padding: "2px 10px",
-              borderRadius: "14px",
+              padding: "1px 8px",
+              borderRadius: "12px",
               boxShadow: "inset 1px 1px 2px #d0d6e2, inset -1px -1px 2px #ffffff",
             }}
           >
             {internships.length}
           </span>
         </div>
-        <p style={{ margin: 0, fontSize: "12px", color: "#64748b" }}>
+        <p style={{ margin: 0, fontSize: "11px", color: "#64748b" }}>
           {description}
         </p>
       </div>
@@ -117,8 +119,9 @@ export function KanbanColumn({
       <div
         style={{
           flex: 1,
+          minHeight: 0,
           overflowY: "auto",
-          padding: "16px 14px",
+          padding: "10px 8px",
         }}
       >
         <SortableContext
@@ -137,20 +140,20 @@ export function KanbanColumn({
           ) : (
             <div
               style={{
-                height: "160px",
+                height: "90px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: "20px",
+                borderRadius: "14px",
                 backgroundColor: "#e4e8f1",
-                boxShadow: "inset 3px 3px 7px #d0d6e2, inset -3px -3px 7px #ffffff",
+                boxShadow: "inset 2px 2px 5px #d0d6e2, inset -2px -2px 5px #ffffff",
                 color: "#94a3b8",
-                gap: "8px",
+                gap: "4px",
               }}
             >
-              <Inbox size={24} color="#a5b4fc" />
-              <span style={{ fontSize: "13px", fontWeight: "500" }}>No applications yet</span>
+              <Inbox size={20} color="#a5b4fc" />
+              <span style={{ fontSize: "12px", fontWeight: "500" }}>No applications yet</span>
             </div>
           )}
         </SortableContext>

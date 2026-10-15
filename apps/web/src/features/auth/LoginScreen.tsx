@@ -87,14 +87,14 @@ export function LoginScreen() {
 
           <h1
             style={{
-              fontSize: "24px",
-              fontWeight: "800",
+              fontSize: "26px",
+              fontWeight: "900",
               margin: "0 0 6px 0",
-              color: "#6d28d9",
-              letterSpacing: "-0.02em",
+              color: "#5b21b6",
+              letterSpacing: "-0.03em",
             }}
           >
-            Olan's Jira
+            Hiro
           </h1>
           <p style={{ margin: 0, fontSize: "14px", color: "#64748b" }}>
             {initialized

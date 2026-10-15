@@ -34,14 +34,14 @@ export function InternshipCard({
     transition,
     opacity: isDragging ? 0.35 : 1,
     background: "linear-gradient(145deg, #f3f6fd, #e4e9f3)",
-    borderRadius: "20px",
-    padding: "18px",
-    marginBottom: "16px",
+    borderRadius: "16px",
+    padding: "12px 14px",
+    marginBottom: "10px",
     cursor: "grab",
     userSelect: "none",
     boxShadow: isOverlay
-      ? "18px 18px 36px #b8c1d1, -18px -18px 36px #ffffff"
-      : "7px 7px 16px #cfd6e4, -7px -7px 16px #ffffff",
+      ? "14px 14px 28px #b8c1d1, -14px -14px 28px #ffffff"
+      : "5px 5px 12px #cfd6e4, -5px -5px 12px #ffffff",
     border: "1px solid rgba(255, 255, 255, 0.7)",
   };
 
@@ -76,29 +76,29 @@ export function InternshipCard({
         }
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "8px" }}>
-        <h4 style={{ margin: 0, fontSize: "15px", fontWeight: "700", color: "#1e1b4b" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "4px" }}>
+        <h4 style={{ margin: 0, fontSize: "14px", fontWeight: "700", color: "#1e1b4b" }}>
           {internship.role}
         </h4>
       </div>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#6d28d9", fontSize: "13px", fontWeight: "600", marginBottom: "12px" }}>
-        <Building size={14} />
+      <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#6d28d9", fontSize: "12px", fontWeight: "600", marginBottom: "8px" }}>
+        <Building size={13} />
         <span>{internship.companyName}</span>
       </div>
 
       {internship.skills && internship.skills.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "14px" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginBottom: "8px" }}>
           {internship.skills.slice(0, 4).map((skill) => (
             <span
               key={skill}
               style={{
-                fontSize: "11px",
+                fontSize: "10px",
                 fontWeight: "600",
                 backgroundColor: "#ede9fe",
                 color: "#7c3aed",
-                padding: "3px 8px",
-                borderRadius: "10px",
+                padding: "2px 7px",
+                borderRadius: "8px",
                 boxShadow: "inset 1px 1px 2px #d0d6e2, inset -1px -1px 2px #ffffff",
               }}
             >
@@ -106,7 +106,7 @@ export function InternshipCard({
             </span>
           ))}
           {internship.skills.length > 4 && (
-            <span style={{ fontSize: "11px", color: "#94a3b8", alignSelf: "center", fontWeight: "500" }}>
+            <span style={{ fontSize: "10px", color: "#94a3b8", alignSelf: "center", fontWeight: "500" }}>
               +{internship.skills.length - 4}
             </span>
           )}
@@ -118,17 +118,17 @@ export function InternshipCard({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          fontSize: "11px",
+          fontSize: "10px",
           color: "#64748b",
           borderTop: "1px solid rgba(207, 213, 226, 0.6)",
-          paddingTop: "10px",
+          paddingTop: "6px",
         }}
       >
         <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <Calendar size={12} color="#8b5cf6" /> {formattedAppliedDate}
+          <Calendar size={11} color="#8b5cf6" /> {formattedAppliedDate}
         </span>
         <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-          <Clock size={12} color="#8b5cf6" /> {formattedUpdatedAt}
+          <Clock size={11} color="#8b5cf6" /> {formattedUpdatedAt}
         </span>
       </div>
 
@@ -138,8 +138,8 @@ export function InternshipCard({
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: "10px",
-            paddingTop: "6px",
+            marginTop: "6px",
+            paddingTop: "4px",
           }}
           onClick={(e) => e.stopPropagation()}
           onPointerDown={(e) => e.stopPropagation()}
