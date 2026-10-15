@@ -37,9 +37,12 @@ authRouter.post(
       req.session.authenticated = true;
       req.session.loginTime = Date.now();
 
-      res.status(201).json({
-        message: "Password initialized successfully",
-        data: { authenticated: true },
+      req.session.save((err) => {
+        if (err) return next(err);
+        res.status(201).json({
+          message: "Password initialized successfully",
+          data: { authenticated: true },
+        });
       });
     } catch (error) {
       next(error);
@@ -59,9 +62,12 @@ authRouter.post(
       req.session.authenticated = true;
       req.session.loginTime = Date.now();
 
-      res.json({
-        message: "Login successful",
-        data: { authenticated: true },
+      req.session.save((err) => {
+        if (err) return next(err);
+        res.json({
+          message: "Login successful",
+          data: { authenticated: true },
+        });
       });
     } catch (error) {
       next(error);

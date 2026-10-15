@@ -52,19 +52,19 @@ a history entry. - Invalid input returns a clear 4xx response.
 
 ## Phase 2 --- Local Authentication
 
--   [ ] Implement first-run password setup flow or documented secure
+-   [x] Implement first-run password setup flow or documented secure
     initialization.
--   [ ] Hash password using Argon2id or bcrypt.
--   [ ] Implement login and logout endpoints.
--   [ ] Use server-side sessions with `HttpOnly` and `SameSite` cookies.
--   [ ] Set `Secure` cookies when running behind HTTPS; localhost HTTP
+-   [x] Hash password using Argon2id or bcrypt.
+-   [x] Implement login and logout endpoints.
+-   [x] Use server-side sessions with `HttpOnly` and `SameSite` cookies.
+-   [x] Set `Secure` cookies when running behind HTTPS; localhost HTTP
     development must remain usable.
--   [ ] Protect all private API endpoints with authentication
+-   [x] Protect all private API endpoints with authentication
     middleware.
--   [ ] Add login rate limiting and generic authentication error
+-   [x] Add login rate limiting and generic authentication error
     messages.
--   [ ] Add frontend login screen and logout action.
--   [ ] Add tests for unauthenticated access and invalid passwords.
+-   [x] Add frontend login screen and logout action.
+-   [x] Add tests for unauthenticated access and invalid passwords.
 
 **Acceptance criteria** - Private API routes reject requests without a
 valid session. - Passwords are never stored as plaintext. - Login state

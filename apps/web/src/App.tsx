@@ -1,122 +1,118 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { AuthProvider } from "./features/auth/AuthContext";
+import { useAuth } from "./features/auth/useAuth";
+import { LoginScreen } from "./features/auth/LoginScreen";
 
-function App() {
-  const [count, setCount] = useState(0)
+function Dashboard() {
+  const { logout } = useAuth();
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#090d16",
+        color: "#f3f4f6",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
+      <header
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "16px 24px",
+          borderBottom: "1px solid #283141",
+          backgroundColor: "#161b26",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <span style={{ fontSize: "20px", fontWeight: "700", color: "#38bdf8" }}>
+            Olan's Jira
+          </span>
+          <span
+            style={{
+              fontSize: "12px",
+              padding: "2px 8px",
+              backgroundColor: "#1e293b",
+              borderRadius: "4px",
+              color: "#94a3b8",
+            }}
+          >
+            Phase 2 Authenticated
+          </span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+
+        <button
+          onClick={logout}
+          style={{
+            padding: "8px 14px",
+            backgroundColor: "#ef4444",
+            border: "none",
+            borderRadius: "6px",
+            color: "#ffffff",
+            fontWeight: "600",
+            fontSize: "13px",
+            cursor: "pointer",
+          }}
+        >
+          Log Out
+        </button>
+      </header>
+
+      <main style={{ padding: "32px 24px" }}>
+        <div
+          style={{
+            backgroundColor: "#161b26",
+            border: "1px solid #283141",
+            borderRadius: "8px",
+            padding: "24px",
+            maxWidth: "600px",
+          }}
+        >
+          <h2 style={{ margin: "0 0 12px 0", fontSize: "18px" }}>
+            Session Active & Protected
+          </h2>
+          <p style={{ margin: 0, color: "#9ca3af", fontSize: "14px", lineHeight: "1.5" }}>
+            You are securely logged into Olan's Jira. The server-side session cookie is active.
+            Ready for Phase 3 (Kanban Board).
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      </main>
+    </div>
+  );
 }
 
-export default App
+function MainApp() {
+  const { authenticated, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#090d16",
+          color: "#9ca3af",
+          fontFamily: "system-ui, sans-serif",
+        }}
+      >
+        Checking workspace authorization...
+      </div>
+    );
+  }
+
+  if (!authenticated) {
+    return <LoginScreen />;
+  }
+
+  return <Dashboard />;
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <MainApp />
+    </AuthProvider>
+  );
+}
