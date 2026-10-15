@@ -73,21 +73,21 @@ and session secrets are not committed to source control.
 
 ## Phase 3 --- Kanban Dashboard
 
--   [ ] Build desktop-first application shell and top navigation.
--   [ ] Build summary metrics for total, active, test, and interview
+-   [x] Build desktop-first application shell and top navigation.
+-   [x] Build summary metrics for total, active, test, and interview
     applications.
--   [ ] Build four ordered columns: Applied, Test, Interview, Next Step.
--   [ ] Build internship cards with company, role, status, applied date,
+-   [x] Build four ordered columns: Applied, Test, Interview, Next Step.
+-   [x] Build internship cards with company, role, status, applied date,
     skills, and last updated.
--   [ ] Add loading, error, and empty states.
--   [ ] Implement drag-and-drop using `dnd-kit`.
--   [ ] Persist status changes through the API.
--   [ ] Restore the previous UI state and show an error if saving a drag
+-   [x] Add loading, error, and empty states.
+-   [x] Implement drag-and-drop using `dnd-kit`.
+-   [x] Persist status changes through the API.
+-   [x] Restore the previous UI state and show an error if saving a drag
     operation fails.
--   [ ] Add search by company and role.
--   [ ] Add status filter and sorting by updated date.
--   [ ] Ensure horizontal board scrolling works on laptop-sized screens.
--   [ ] Add keyboard-accessible alternatives for moving a card where
+-   [x] Add search by company and role.
+-   [x] Add status filter and sorting by updated date.
+-   [x] Ensure horizontal board scrolling works on laptop-sized screens.
+-   [x] Add keyboard-accessible alternatives for moving a card where
     practical.
 
 **Acceptance criteria** - A card can be moved between all four

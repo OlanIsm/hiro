@@ -1,6 +1,8 @@
 import { AuthProvider } from "./features/auth/AuthContext";
 import { useAuth } from "./features/auth/useAuth";
 import { LoginScreen } from "./features/auth/LoginScreen";
+import { KanbanBoard } from "./features/internships/components/KanbanBoard";
+import { LayoutDashboard, LogOut, Briefcase } from "lucide-react";
 
 function Dashboard() {
   const { logout } = useAuth();
@@ -11,71 +13,107 @@ function Dashboard() {
         minHeight: "100vh",
         backgroundColor: "#090d16",
         color: "#f3f4f6",
-        fontFamily: "system-ui, -apple-system, sans-serif",
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
+      {/* Desktop-First Application Shell Top Navigation */}
       <header
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "16px 24px",
-          borderBottom: "1px solid #283141",
-          backgroundColor: "#161b26",
+          padding: "14px 28px",
+          borderBottom: "1px solid #1f2937",
+          backgroundColor: "#111827",
+          position: "sticky",
+          top: 0,
+          zIndex: 40,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontSize: "20px", fontWeight: "700", color: "#38bdf8" }}>
-            Olan's Jira
-          </span>
-          <span
+        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+          <div
             style={{
-              fontSize: "12px",
-              padding: "2px 8px",
-              backgroundColor: "#1e293b",
-              borderRadius: "4px",
-              color: "#94a3b8",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "36px",
+              height: "36px",
+              borderRadius: "8px",
+              backgroundColor: "#0284c7",
+              color: "#ffffff",
             }}
           >
-            Phase 2 Authenticated
-          </span>
+            <Briefcase size={20} />
+          </div>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ fontSize: "18px", fontWeight: "700", color: "#f8fafc", letterSpacing: "-0.02em" }}>
+                Olan's Jira
+              </span>
+              <span
+                style={{
+                  fontSize: "11px",
+                  padding: "2px 8px",
+                  backgroundColor: "#1e293b",
+                  border: "1px solid #334155",
+                  borderRadius: "9999px",
+                  color: "#38bdf8",
+                  fontWeight: "600",
+                }}
+              >
+                Local-First MVP
+              </span>
+            </div>
+            <div style={{ fontSize: "12px", color: "#64748b" }}>
+              Internship Application Tracker
+            </div>
+          </div>
         </div>
 
-        <button
-          onClick={logout}
-          style={{
-            padding: "8px 14px",
-            backgroundColor: "#ef4444",
-            border: "none",
-            borderRadius: "6px",
-            color: "#ffffff",
-            fontWeight: "600",
-            fontSize: "13px",
-            cursor: "pointer",
-          }}
-        >
-          Log Out
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              color: "#94a3b8",
+              fontSize: "13px",
+              backgroundColor: "#1f2937",
+              padding: "6px 12px",
+              borderRadius: "6px",
+            }}
+          >
+            <LayoutDashboard size={16} />
+            <span>Kanban Board</span>
+          </div>
+
+          <button
+            onClick={logout}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              padding: "7px 14px",
+              backgroundColor: "#27272a",
+              border: "1px solid #3f3f46",
+              borderRadius: "6px",
+              color: "#f43f5e",
+              fontWeight: "600",
+              fontSize: "13px",
+              cursor: "pointer",
+              transition: "all 0.2s",
+            }}
+            title="Log out of local session"
+          >
+            <LogOut size={15} />
+            <span>Log Out</span>
+          </button>
+        </div>
       </header>
 
-      <main style={{ padding: "32px 24px" }}>
-        <div
-          style={{
-            backgroundColor: "#161b26",
-            border: "1px solid #283141",
-            borderRadius: "8px",
-            padding: "24px",
-            maxWidth: "600px",
-          }}
-        >
-          <h2 style={{ margin: "0 0 12px 0", fontSize: "18px" }}>
-            Session Active & Protected
-          </h2>
-          <p style={{ margin: 0, color: "#9ca3af", fontSize: "14px", lineHeight: "1.5" }}>
-            You are securely logged into Olan's Jira. The server-side session cookie is active.
-            Ready for Phase 3 (Kanban Board).
-          </p>
-        </div>
+      {/* Main Content Area */}
+      <main style={{ padding: "24px 28px" }}>
+        <KanbanBoard />
       </main>
     </div>
   );
