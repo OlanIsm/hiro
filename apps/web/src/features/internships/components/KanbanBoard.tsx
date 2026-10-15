@@ -160,20 +160,20 @@ export function KanbanBoard() {
         {/* Total Applications - Ungu */}
         <div
           style={{
-            background: "linear-gradient(145deg, #f5f3ff, #ede9fe)",
-            border: "1px solid rgba(124, 58, 237, 0.25)",
-            borderRadius: "9999px",
-            padding: "6px 18px",
+            background: "linear-gradient(135deg, #8b5cf6, #7c3aed)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            borderRadius: "10px",
+            padding: "6px 14px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            boxShadow: "3px 3px 8px #d0d6e2, -3px -3px 8px #ffffff",
+            boxShadow: "3px 3px 8px rgba(124, 58, 237, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#6d28d9" }}>
+          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
             Total Applications
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#5b21b6" }}>
+          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.total}
           </span>
         </div>
@@ -181,20 +181,20 @@ export function KanbanBoard() {
         {/* Test Phase - Kuning */}
         <div
           style={{
-            background: "linear-gradient(145deg, #fffbeb, #fef3c7)",
-            border: "1px solid rgba(245, 158, 11, 0.3)",
-            borderRadius: "9999px",
-            padding: "6px 18px",
+            background: "linear-gradient(135deg, #f59e0b, #d97706)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            borderRadius: "10px",
+            padding: "6px 14px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            boxShadow: "3px 3px 8px #d0d6e2, -3px -3px 8px #ffffff",
+            boxShadow: "3px 3px 8px rgba(217, 119, 6, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#b45309" }}>
+          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
             Test Phase
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#92400e" }}>
+          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.test}
           </span>
         </div>
@@ -202,20 +202,20 @@ export function KanbanBoard() {
         {/* Interview Phase - Biru */}
         <div
           style={{
-            background: "linear-gradient(145deg, #eff6ff, #dbeafe)",
-            border: "1px solid rgba(59, 130, 246, 0.3)",
-            borderRadius: "9999px",
-            padding: "6px 18px",
+            background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            borderRadius: "10px",
+            padding: "6px 14px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            boxShadow: "3px 3px 8px #d0d6e2, -3px -3px 8px #ffffff",
+            boxShadow: "3px 3px 8px rgba(37, 99, 235, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#1d4ed8" }}>
+          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
             Interview Phase
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#1e40af" }}>
+          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.interview}
           </span>
         </div>
@@ -223,20 +223,20 @@ export function KanbanBoard() {
         {/* Active In Pipeline - Hijau */}
         <div
           style={{
-            background: "linear-gradient(145deg, #ecfdf5, #d1fae5)",
-            border: "1px solid rgba(16, 185, 129, 0.3)",
-            borderRadius: "9999px",
-            padding: "6px 18px",
+            background: "linear-gradient(135deg, #10b981, #059669)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            borderRadius: "10px",
+            padding: "6px 14px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            boxShadow: "3px 3px 8px #d0d6e2, -3px -3px 8px #ffffff",
+            boxShadow: "3px 3px 8px rgba(5, 150, 105, 0.25), -2px -2px 6px #ffffff",
           }}
         >
-          <span style={{ fontSize: "12px", fontWeight: "700", color: "#047857" }}>
+          <span style={{ fontSize: "12px", fontWeight: "700", color: "#ffffff" }}>
             Active In Pipeline
           </span>
-          <span style={{ fontSize: "16px", fontWeight: "800", color: "#065f46" }}>
+          <span style={{ fontSize: "16px", fontWeight: "800", color: "#ffffff" }}>
             {metrics.active}
           </span>
         </div>

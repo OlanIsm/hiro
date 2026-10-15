@@ -24,23 +24,23 @@ box-shadow: 36px 36px 72px #bebebe,
   - Secondary Labels & Meta: `#475569` (Slate-600)
   - Muted / Placeholders: `#94a3b8` (Slate-400)
 
-### 4 Top Metric Pills (No Icons)
-1. **Total Applications**: **Ungu (Purple)**
-   - Background: `linear-gradient(145deg, #f5f3ff, #ede9fe)`
-   - Border: `1px solid rgba(124, 58, 237, 0.25)`
-   - Label: `#6d28d9` | Count: `#5b21b6`
-2. **Test Phase**: **Kuning (Yellow/Amber)**
-   - Background: `linear-gradient(145deg, #fffbeb, #fef3c7)`
-   - Border: `1px solid rgba(245, 158, 11, 0.3)`
-   - Label: `#b45309` | Count: `#92400e`
-3. **Interview Phase**: **Biru (Blue)**
-   - Background: `linear-gradient(145deg, #eff6ff, #dbeafe)`
-   - Border: `1px solid rgba(59, 130, 246, 0.3)`
-   - Label: `#1d4ed8` | Count: `#1e40af`
-4. **Active in Pipeline**: **Hijau (Green/Emerald)**
-   - Background: `linear-gradient(145deg, #ecfdf5, #d1fae5)`
-   - Border: `1px solid rgba(16, 185, 129, 0.3)`
-   - Label: `#047857` | Count: `#065f46`
+### 4 Top Metric Cards (Filled Color, Compact Rounded Rectangles)
+1. **Total Applications**: **Ungu (Purple Fill)**
+   - Background: `linear-gradient(135deg, #8b5cf6, #7c3aed)`
+   - Border: `1px solid rgba(255, 255, 255, 0.2)` | Radius: `10px` | Padding: `6px 14px`
+   - Label: `#ffffff` | Count: `#ffffff`
+2. **Test Phase**: **Kuning (Amber/Yellow Fill)**
+   - Background: `linear-gradient(135deg, #f59e0b, #d97706)`
+   - Border: `1px solid rgba(255, 255, 255, 0.2)` | Radius: `10px` | Padding: `6px 14px`
+   - Label: `#ffffff` | Count: `#ffffff`
+3. **Interview Phase**: **Biru (Blue Fill)**
+   - Background: `linear-gradient(135deg, #3b82f6, #2563eb)`
+   - Border: `1px solid rgba(255, 255, 255, 0.2)` | Radius: `10px` | Padding: `6px 14px`
+   - Label: `#ffffff` | Count: `#ffffff`
+4. **Active in Pipeline**: **Hijau (Emerald/Green Fill)**
+   - Background: `linear-gradient(135deg, #10b981, #059669)`
+   - Border: `1px solid rgba(255, 255, 255, 0.2)` | Radius: `10px` | Padding: `6px 14px`
+   - Label: `#ffffff` | Count: `#ffffff`
 
 ---
 
