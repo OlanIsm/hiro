@@ -46,7 +46,8 @@ export function LoginScreen() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        width: "100%",
+        height: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -54,6 +55,7 @@ export function LoginScreen() {
         color: "#1e1b4b",
         fontFamily: "system-ui, -apple-system, sans-serif",
         padding: "20px",
+        boxSizing: "border-box",
       }}
     >
       <div
