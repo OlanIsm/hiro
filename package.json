@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OlanIsm/hiro.git"
+    "url": "git+https://github.com/OlanIsm/hiro.git"
   },
   "keywords": [
     "internship",
@@ -21,8 +21,8 @@
     "apps/*"
   ],
   "bin": {
-    "hiro-tracker": "./bin/hiro.js",
-    "hiro": "./bin/hiro.js"
+    "hiro-tracker": "bin/hiro.js",
+    "hiro": "bin/hiro.js"
   },
   "files": [
     "bin",
