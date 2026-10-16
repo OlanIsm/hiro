@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, "..");
 
 const HOST = process.env.HOST || "127.0.0.1";
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 4000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 29200;
 const HEALTH_URL = `http://${HOST}:${PORT}/api/health`;
 const APP_URL = `http://${HOST}:${PORT}`;
 

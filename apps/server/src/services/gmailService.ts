@@ -23,7 +23,7 @@ export class GmailService {
   generateAuthUrl(state: string): string {
     const clientId = process.env.GOOGLE_CLIENT_ID;
     const redirectUri =
-      process.env.GOOGLE_REDIRECT_URI || "http://127.0.0.1:4000/api/gmail/callback";
+      process.env.GOOGLE_REDIRECT_URI || "http://127.0.0.1:29200/api/gmail/callback";
 
     if (!clientId) {
       throw new AppError(
@@ -56,7 +56,7 @@ export class GmailService {
     const clientId = process.env.GOOGLE_CLIENT_ID;
     const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
     const redirectUri =
-      process.env.GOOGLE_REDIRECT_URI || "http://127.0.0.1:4000/api/gmail/callback";
+      process.env.GOOGLE_REDIRECT_URI || "http://127.0.0.1:29200/api/gmail/callback";
 
     if (!clientId || !clientSecret) {
       throw new AppError("Google OAuth credentials missing on backend.", 500);

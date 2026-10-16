@@ -40,7 +40,7 @@ cp .env.example .env
 ```
 
 Default variables:
-- `PORT`: `4000`
+- `PORT`: `29200`
 - `HOST`: `127.0.0.1`
 - `DATABASE_URL`: `"file:./dev.db"`
 - `CLIENT_ORIGIN`: `"http://localhost:5173"`
@@ -87,7 +87,7 @@ To invoke Olan's Jira directly using the command name `olan's jira` in PowerShel
 3. Save and reload (`. $PROFILE`). Now running `olan's jira` or `olans-jira` will launch the app!
 
 ### Launcher Features & Safety:
-- **Duplicate Prevention**: If the server is already active on port `4000`, the launcher will not start a second process; it simply opens the existing instance in your default browser.
+- **Duplicate Prevention**: If the server is already active on port `29200`, the launcher will not start a second process; it simply opens the existing instance in your default browser.
 - **Loopback Binding**: Strictly bound to `127.0.0.1` by default (not exposed to the local network).
 - **Graceful Shutdown**: Pressing `Ctrl + C` in the launcher terminal gracefully stops the background server process.
 
@@ -103,7 +103,7 @@ npm run dev
 
 Or run them individually in separate terminal sessions:
 
-- **Backend** (Express API on `http://127.0.0.1:4000`):
+- **Backend** (Express API on `http://127.0.0.1:29200`):
   ```bash
   npm run dev:server
   ```
@@ -173,12 +173,12 @@ Hiro includes an intelligent, privacy-first Gmail synchronization engine to auto
 1. Create a Google Cloud project at [console.cloud.google.com](https://console.cloud.google.com).
 2. Enable the **Gmail API**.
 3. Configure the OAuth Consent Screen and create an **OAuth 2.0 Web Client ID**:
-   - Authorized redirect URI: `http://127.0.0.1:4000/api/gmail/callback`
+   - Authorized redirect URI: `http://127.0.0.1:29200/api/gmail/callback`
 4. Add the credentials to your `.env` file:
    ```env
    GOOGLE_CLIENT_ID="your-google-client-id"
    GOOGLE_CLIENT_SECRET="your-google-client-secret"
-   GOOGLE_REDIRECT_URI="http://127.0.0.1:4000/api/gmail/callback"
+   GOOGLE_REDIRECT_URI="http://127.0.0.1:29200/api/gmail/callback"
    GMAIL_TOKEN_ENCRYPTION_KEY="your-32-byte-hex-encryption-key" # Optional, defaults to hashed SESSION_SECRET
    ```
 
@@ -193,9 +193,9 @@ Hiro includes an intelligent, privacy-first Gmail synchronization engine to auto
 
 ## 🛠️ Troubleshooting
 
-- **Port 4000 already in use**: The launcher checks `http://127.0.0.1:4000/api/health` before starting to avoid duplicate processes. If a stale node process is holding port 4000, you can terminate it in PowerShell:
+- **Port 29200 already in use**: The launcher checks `http://127.0.0.1:29200/api/health` before starting to avoid duplicate processes. If a stale node process is holding port 29200, you can terminate it in PowerShell:
   ```powershell
-  Stop-Process -Id (Get-NetTCPConnection -LocalPort 4000).OwningProcess -Force
+  Stop-Process -Id (Get-NetTCPConnection -LocalPort 29200).OwningProcess -Force
   ```
 - **Session invalid or expired**: If your session cookie expires, the application automatically redirects to the password unlock screen.
 - **Clean Database Reset**: To completely reinitialize the database (will delete all existing records):
