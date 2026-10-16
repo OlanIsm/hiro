@@ -5,6 +5,7 @@ import { spawn } from "node:child_process";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
+import { Spinner } from "../bin/spinner.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,15 +57,14 @@ function openBrowser(url) {
 }
 
 async function main() {
-  console.log("==================================================");
-  console.log("         Starting Olan's Jira Launcher            ");
-  console.log("==================================================");
+  const spinner = new Spinner("Initializing Olan's Jira launcher...").start();
 
   // 1. Check if server is already running
+  spinner.update("Checking for existing running server...");
   const isRunning = await checkServerRunning();
   if (isRunning) {
-    console.log(`[Info] Olan's Jira is already running at ${APP_URL}`);
-    console.log("[Info] Preventing duplicate server processes.");
+    spinner.succeed(`Olan's Jira is already running at ${APP_URL}`);
+    console.log("[Info] Opening browser tab...");
     openBrowser(APP_URL);
     return;
   }
@@ -72,7 +72,7 @@ async function main() {
   // 2. Ensure frontend build exists
   const webDist = path.resolve(ROOT_DIR, "apps/web/dist");
   if (!fs.existsSync(webDist)) {
-    console.log("[Build] Frontend build not found. Running initial production build...");
+    spinner.update("Building production frontend bundle...");
     const buildProc = spawn(
       process.platform === "win32" ? "npm.cmd" : "npm",
       ["run", "build"],
@@ -85,10 +85,11 @@ async function main() {
         else reject(new Error(`Build failed with exit code ${code}`));
       });
     });
+    spinner.start("Continuing server launch...");
   }
 
   // 3. Start server bound to 127.0.0.1
-  console.log(`[Server] Starting server bound to ${HOST}:${PORT} ...`);
+  spinner.update(`Starting server bound to ${HOST}:${PORT} ...`);
   const serverPath = path.resolve(ROOT_DIR, "apps/server/dist/index.js");
 
   const serverProc = spawn("node", [serverPath], {
@@ -99,16 +100,17 @@ async function main() {
       HOST,
       PORT: String(PORT),
     },
-    stdio: "inherit",
+    stdio: ["ignore", "pipe", "inherit"],
   });
 
   serverProc.on("error", (err) => {
-    console.error("[Error] Failed to start server process:", err.message);
+    spinner.fail(`Failed to start server process: ${err.message}`);
     process.exit(1);
   });
 
   // Handle graceful termination
   const cleanup = () => {
+    spinner.stop();
     console.log("\n[Shutdown] Stopping Olan's Jira server...");
     serverProc.kill("SIGINT");
     process.exit(0);
@@ -118,7 +120,7 @@ async function main() {
   process.on("SIGTERM", cleanup);
 
   // 4. Poll until server is ready, then open browser
-  console.log("[Health] Waiting for server initialization...");
+  spinner.update("Waiting for server to become ready...");
   let ready = false;
   for (let attempt = 1; attempt <= 30; attempt++) {
     await new Promise((r) => setTimeout(r, 400));
@@ -127,10 +129,11 @@ async function main() {
   }
 
   if (ready) {
-    console.log(`[Ready] Server is up and running at ${APP_URL}`);
+    spinner.succeed(`Server is up and running at ${APP_URL}`);
+    serverProc.stdout.pipe(process.stdout);
     openBrowser(APP_URL);
   } else {
-    console.error("[Warning] Server startup is taking longer than expected.");
+    spinner.warn("Server startup is taking longer than expected.");
     console.log(`You can check manually at: ${APP_URL}`);
   }
 }

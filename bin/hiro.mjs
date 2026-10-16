@@ -8,6 +8,7 @@ import fs from "node:fs";
 import os from "node:os";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { Spinner } from "./spinner.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -202,17 +203,21 @@ function openBrowser(url) {
 }
 
 async function main() {
+  const spinner = new Spinner("Initializing Hiro...").start();
+
+  spinner.update("Checking network port and active sessions...");
   const { port: PORT, isAlreadyRunning } = await resolveWorkingPort(targetPort, HOST);
   const APP_URL = `http://${HOST}:${PORT}`;
 
   if (isAlreadyRunning) {
-    console.log(`[Hiro] Already active at ${APP_URL}`);
+    spinner.succeed(`Hiro is already running at ${APP_URL}`);
     console.log("[Hiro] Opening existing session in browser...");
     openBrowser(APP_URL);
     process.exit(0);
   }
 
   // 6. Programmatic DB Migration
+  spinner.update("Verifying database schema and migrations...");
   const schemaPath = path.resolve(ROOT_DIR, "apps/server/prisma/schema.prisma");
   let prismaCli = path.resolve(ROOT_DIR, "node_modules/prisma/build/index.js");
   if (!fs.existsSync(prismaCli)) {
@@ -231,7 +236,8 @@ async function main() {
     );
 
     if (migrateResult.status !== 0) {
-      console.error("[Hiro] Database migration notice:", migrateResult.stderr || migrateResult.stdout);
+      spinner.warn("Database migration notice: " + (migrateResult.stderr || migrateResult.stdout).trim());
+      spinner.start("Continuing Hiro startup...");
     }
   }
 
@@ -240,7 +246,7 @@ async function main() {
   const serverDist = path.resolve(ROOT_DIR, "apps/server/dist/index.js");
 
   if (!fs.existsSync(webDist) || !fs.existsSync(serverDist)) {
-    console.log("[Hiro] Preparing production assets (one-time setup)...");
+    spinner.update("Building production assets (one-time setup, please wait)...");
     const buildProc = spawnSync(
       process.platform === "win32" ? "npm.cmd" : "npm",
       ["run", "build"],
@@ -248,22 +254,14 @@ async function main() {
     );
 
     if (buildProc.status !== 0) {
-      console.error("[Hiro] Build failed.");
+      spinner.fail("Build failed.");
       process.exit(1);
     }
+    spinner.start("Resuming Hiro startup...");
   }
 
-  // 8. Welcome Banner
-  console.log("\n=======================================================");
-  console.log("   ★ HIRO — Single-User Local Internship Tracker ★    ");
-  console.log("=======================================================");
-  console.log(`   Local URL:    ${APP_URL}`);
-  console.log(`   Database:     ${dbFile}`);
-  console.log(`   Data Dir:     ${dataDir}`);
-  console.log("=======================================================");
-  console.log("   Press Ctrl+C to stop server.\n");
-
-  // 9. Spawn Server Process
+  // 8. Spawn Server Process
+  spinner.update("Starting Hiro server daemon...");
   const serverProc = spawn(process.execPath, [serverDist], {
     cwd: path.resolve(ROOT_DIR, "apps/server"),
     env: {
@@ -276,15 +274,27 @@ async function main() {
       GMAIL_TOKEN_ENCRYPTION_KEY: config.tokenEncryptionKey,
       STATIC_PATH: webDist,
     },
-    stdio: "inherit",
+    stdio: ["ignore", "pipe", "inherit"],
+  });
+
+  let serverExited = false;
+  let ready = false;
+
+  serverProc.on("exit", (code) => {
+    serverExited = true;
+    if (!ready) {
+      spinner.fail(`Server process exited prematurely with code ${code}`);
+      process.exit(code || 1);
+    }
   });
 
   serverProc.on("error", (err) => {
-    console.error("[Hiro] Failed to start server:", err.message);
+    spinner.fail(`Failed to start server: ${err.message}`);
     process.exit(1);
   });
 
   const cleanup = () => {
+    spinner.stop();
     console.log("\n[Hiro] Stopping server...");
     serverProc.kill("SIGINT");
     process.exit(0);
@@ -293,17 +303,33 @@ async function main() {
   process.on("SIGINT", cleanup);
   process.on("SIGTERM", cleanup);
 
-  // 10. Wait for Server Health & Open Browser
-  let ready = false;
+  // 9. Wait for Server Health & Open Browser
+  spinner.update("Waiting for server to become ready...");
   for (let attempt = 1; attempt <= 30; attempt++) {
     await new Promise((r) => setTimeout(r, 400));
+    if (serverExited) break;
     ready = await checkHiroRunning(PORT, HOST);
     if (ready) break;
   }
 
   if (ready) {
-    console.log(`[Hiro] Server is ready. Opening browser at ${APP_URL} ...`);
+    spinner.succeed("Hiro server is up and running!");
+    console.log("\n=======================================================");
+    console.log("   ★ HIRO — Single-User Local Internship Tracker ★    ");
+    console.log("=======================================================");
+    console.log(`   Local URL:    ${APP_URL}`);
+    console.log(`   Database:     ${dbFile}`);
+    console.log(`   Data Dir:     ${dataDir}`);
+    console.log("=======================================================");
+    console.log("   Press Ctrl+C to stop server.\n");
+
+    serverProc.stdout.pipe(process.stdout);
+
+    console.log(`[Hiro] Opening browser at ${APP_URL} ...`);
     openBrowser(APP_URL);
+  } else {
+    spinner.fail("Server startup took longer than expected.");
+    console.log(`[Hiro] You can try accessing manually at: ${APP_URL}`);
   }
 }
 
