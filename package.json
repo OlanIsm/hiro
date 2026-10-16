@@ -1,0 +1,64 @@
+{
+  "name": "hiro-tracker",
+  "version": "0.1.0",
+  "description": "Private, single-user, local-first internship application tracker with a 4-stage Kanban workflow and zero-setup CLI",
+  "author": "Olan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OlanIsm/hiro.git"
+  },
+  "keywords": [
+    "internship",
+    "tracker",
+    "kanban",
+    "job-hunt",
+    "local-first",
+    "desktop-app",
+    "cli"
+  ],
+  "workspaces": [
+    "apps/*"
+  ],
+  "bin": {
+    "hiro-tracker": "./bin/hiro.js",
+    "hiro": "./bin/hiro.js"
+  },
+  "files": [
+    "bin",
+    "apps/server/dist",
+    "apps/server/prisma/schema.prisma",
+    "apps/server/prisma/migrations",
+    "apps/web/dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:server": "npm run dev --workspace=apps/server",
+    "build": "npm run build --workspaces",
+    "prepack": "npm run build",
+    "start": "node bin/hiro.js",
+    "hiro": "node bin/hiro.js",
+    "olan's-jira": "node bin/hiro.js",
+    "test": "npm run test --workspace=apps/server",
+    "typecheck": "npm run typecheck --workspace=apps/web && npm run typecheck --workspace=apps/server",
+    "lint": "npm run lint --workspace=apps/web",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.7.1",
+    "express-session": "^1.19.0",
+    "prisma": "^6.4.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

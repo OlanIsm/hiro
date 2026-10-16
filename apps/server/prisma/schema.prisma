@@ -1,0 +1,69 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Internship {
+  id             String          @id @default(uuid())
+  companyName    String
+  role           String
+  jobDescription String?
+  skills         String          @default("[]") // JSON stringified array of skill labels
+  status         String          @default("APPLIED") // APPLIED | TEST | INTERVIEW | NEXT_STEP
+  appliedAt      DateTime        @default(now())
+  jobUrl         String?
+  recruiterEmail String?
+  notes          String?
+  nextAction     String?
+  deadline       DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  statusHistories StatusHistory[]
+  processedEmails ProcessedEmail[]
+}
+
+model StatusHistory {
+  id             String      @id @default(uuid())
+  internshipId   String
+  previousStatus String?
+  newStatus      String
+  changedAt      DateTime    @default(now())
+  source         String      @default("MANUAL") // MANUAL | GMAIL
+  relatedEmailId String?
+
+  internship     Internship  @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+}
+
+model GmailAccount {
+  id                    String    @id @default(uuid())
+  emailAddress          String    @unique
+  encryptedRefreshToken String
+  lastSyncedAt          DateTime?
+  syncEnabled           Boolean   @default(true)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model ProcessedEmail {
+  id                String      @id @default(uuid())
+  gmailMessageId    String      @unique
+  internshipId      String?
+  detectedCategory  String?
+  recommendedStatus String?
+  confidence        Float?
+  processedAt       DateTime    @default(now())
+
+  internship        Internship? @relation(fields: [internshipId], references: [id], onDelete: SetNull)
+}
+
+model AppSettings {
+  key       String   @id
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
