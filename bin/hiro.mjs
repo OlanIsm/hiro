@@ -314,13 +314,9 @@ async function main() {
 
   if (ready) {
     spinner.succeed("Hiro server is up and running!");
-    console.log("\n=======================================================");
-    console.log("   ★ HIRO — Single-User Local Internship Tracker ★    ");
-    console.log("=======================================================");
     console.log(`   Local URL:    ${APP_URL}`);
     console.log(`   Database:     ${dbFile}`);
     console.log(`   Data Dir:     ${dataDir}`);
-    console.log("=======================================================");
     console.log("   Press Ctrl+C to stop server.\n");
 
     serverProc.stdout.pipe(process.stdout);

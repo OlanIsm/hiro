@@ -15,7 +15,7 @@ if (!fs.existsSync(schemaPath)) {
   process.exit(0);
 }
 
-const spinner = new Spinner("Generating Prisma database client...").start();
+const spinner = new Spinner("Generating Prisma database client...", { compact: true }).start();
 
 let prismaCli = path.resolve(ROOT_DIR, "node_modules/prisma/build/index.js");
 if (!fs.existsSync(prismaCli)) {
