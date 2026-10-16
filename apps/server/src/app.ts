@@ -36,12 +36,32 @@ app.use(
 
 app.use(express.json());
 
+// Local single-user session store (eliminates MemoryStore multi-process warning)
+class LocalSessionStore extends session.Store {
+  private sessions = new Map<string, session.SessionData>();
+
+  override get(sid: string, callback: (err?: unknown, session?: session.SessionData | null) => void): void {
+    callback(null, this.sessions.get(sid) || null);
+  }
+
+  override set(sid: string, sessionData: session.SessionData, callback?: (err?: unknown) => void): void {
+    this.sessions.set(sid, sessionData);
+    if (callback) callback();
+  }
+
+  override destroy(sid: string, callback?: (err?: unknown) => void): void {
+    this.sessions.delete(sid);
+    if (callback) callback();
+  }
+}
+
 // Session configuration
 const sessionSecret = process.env.SESSION_SECRET || "olan-jira-dev-secret-12345";
 const isCookieSecure = process.env.COOKIE_SECURE === "true" || process.env.HTTPS === "true";
 
 app.use(
   session({
+    store: new LocalSessionStore(),
     secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
