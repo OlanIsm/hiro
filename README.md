@@ -1,39 +1,61 @@
-# Olan's Jira
+# Hiro (Olan's Jira)
 
-Olan's Jira is a private, single-user, local-first internship tracker desktop web application with a 4-stage Kanban workflow: **Applied**, **Test**, **Interview**, and **Next Step**.
+Hiro is a private, single-user, local-first internship application tracker desktop web app built with a focused 4-stage Kanban workflow: **Applied**, **Test**, **Interview**, and **Next Step**.
 
----
-
-## Tech Stack
-
-- **Monorepo**: npm workspaces (`apps/web`, `apps/server`)
-- **Frontend**: React 19, TypeScript, Vite
-- **Backend**: Node.js, Express, TypeScript
-- **Database & ORM**: SQLite, Prisma
-- **Linting & Testing**: oxlint, TypeScript type checks (`tsc --noEmit`), Vitest + Supertest
+Like Omniroute, Hiro is designed with **zero-setup convenience**: install once, type `hiro` from any terminal, and your board opens instantly in your default browser without manual database setup, port configuration, or `.env` files.
 
 ---
 
-## Prerequisites
+## ⚡ Zero-Config Quick Start (Recommended)
 
-- **Node.js**: v18+ (tested on Node v24+)
-- **npm**: v9+ (tested on npm v11+)
+### 1. Installation
 
----
-
-## Getting Started
-
-### 1. Install Dependencies
-
-Install all dependencies across the monorepo from the root directory:
+You can install and link Hiro globally on your machine:
 
 ```bash
+# Clone the repository
+git clone https://github.com/OlanIsm/hiro.git
+cd hiro
+
+# Install dependencies and link the global CLI binary
 npm install
+npm link
 ```
 
-### 2. Environment Configuration
+### 2. Launch Anywhere
 
-Copy the example environment file and adjust if necessary:
+Open any terminal (PowerShell, CMD, Bash, or Zsh) and run:
+
+```bash
+hiro
+```
+
+**What happens automatically:**
+1. **Zero-Setup Database**: Auto-provisions SQLite database at `~/.hiro/hiro.db` and deploys Prisma migrations silently.
+2. **Zero-Config Secrets**: Generates and persists cryptographically secure session secrets in `~/.hiro/config.json`.
+3. **Instant Browser Access**: Automatically launches your default browser at `http://127.0.0.1:29200`.
+4. **Process Guard**: If Hiro is already running, typing `hiro` brings up your existing tab without starting duplicate servers.
+5. **Graceful Exit**: Press `Ctrl + C` in the terminal to stop the server cleanly.
+
+---
+
+## 📁 Where is My Data Stored?
+
+All personal data, settings, and credentials are kept strictly local on your machine:
+
+- **Database**: `~/.hiro/hiro.db` (SQLite database containing all applications, history, and notes)
+- **Configuration**: `~/.hiro/config.json` (Local port, host, and encrypted session keys)
+
+> [!NOTE]
+> Storing your data in your user home directory (`~/.hiro`) ensures that your application records survive code updates, branch switches, or package reinstalls.
+
+---
+
+## 🛠️ Development Mode (For Contributors)
+
+If you are developing or customizing Hiro:
+
+### 1. Environment Setup
 
 ```bash
 cp .env.example .env
@@ -45,136 +67,77 @@ Default variables:
 - `DATABASE_URL`: `"file:./dev.db"`
 - `CLIENT_ORIGIN`: `"http://localhost:5173"`
 
-### 3. Generate Prisma Client & Migrate
-
-Generate the Prisma Client and run migrations for SQLite:
+### 2. Run Database Migrations for Dev
 
 ```bash
 npm run --workspace=apps/server prisma:generate
 npm run --workspace=apps/server prisma:migrate
 ```
 
----
+### 3. Start Development Server with HMR
 
-## ⚡ Zero-Config Quick Start (Global `hiro` Command)
-
-Run Hiro instantly with zero manual setup. Database, migrations, secrets, and builds are provisioned automatically in `~/.hiro`:
-
-```bash
-# Link binary once (or install globally)
-npm link
-
-# Launch anywhere, anytime
-hiro
-```
-
-- **Zero-Setup Database**: Auto-provisions SQLite database at `~/.hiro/hiro.db` and deploys Prisma migrations automatically.
-- **Zero-Config Secrets**: Auto-generates and persists cryptographically random secrets in `~/.hiro/config.json`.
-- **Instant Browser Access**: Automatically launches your default browser at `http://127.0.0.1:29200`.
-- **Process Guard**: If Hiro is already active, typing `hiro` opens the existing tab instead of creating duplicate processes.
-
----
-
-## 🚀 Local Launcher (Production Mode)
-
-To start Olan's Jira as a self-contained local desktop web app:
-
-```bash
-npm start
-# or:
-hiro
-```
-
-### Windows Shell Alias / Command (`olan's jira`)
-
-To invoke Olan's Jira directly using the command name `olan's jira` in PowerShell:
-
-1. Open your PowerShell profile:
-   ```powershell
-   notepad $PROFILE
-   ```
-2. Add the following function:
-   ```powershell
-   function global:olan's` jira {
-       & "C:\Users\pilia\orca\workspaces\hiro\leatherjacket\scripts\olans-jira.ps1"
-   }
-   # Or alternatively without spaces/quotes:
-   Set-Alias olans-jira "C:\Users\pilia\orca\workspaces\hiro\leatherjacket\scripts\olans-jira.cmd"
-   ```
-3. Save and reload (`. $PROFILE`). Now running `olan's jira` or `olans-jira` will launch the app!
-
-### Launcher Features & Safety:
-- **Duplicate Prevention**: If the server is already active on port `29200`, the launcher will not start a second process; it simply opens the existing instance in your default browser.
-- **Loopback Binding**: Strictly bound to `127.0.0.1` by default (not exposed to the local network).
-- **Graceful Shutdown**: Pressing `Ctrl + C` in the launcher terminal gracefully stops the background server process.
-
----
-
-## Development Mode
-
-Run backend and frontend concurrently in development with HMR:
+Run backend (Express) and frontend (Vite) concurrently:
 
 ```bash
 npm run dev
 ```
 
-Or run them individually in separate terminal sessions:
+- **Frontend**: `http://localhost:5173`
+- **Backend API**: `http://127.0.0.1:29200`
 
-- **Backend** (Express API on `http://127.0.0.1:29200`):
-  ```bash
-  npm run dev:server
-  ```
-- **Frontend** (Vite Dev Server on `http://localhost:5173`):
-  ```bash
-  npm run dev:web
-  ```
-
----
-
-## Available Scripts
+### 4. Available Scripts
 
 From the repository root:
 
-- `npm run verify` - Complete QA verification: lint, typecheck, test suite, and build.
-- `npm start` - Launch the production application and open the browser.
-- `npm run dev` - Run frontend and backend concurrently in dev mode.
-- `npm run build` - Build both backend and frontend for production.
-- `npm test` - Run automated test suite (Vitest + Supertest).
-- `npm run typecheck` - Run TypeScript compiler checks on both `apps/web` and `apps/server`.
-- `npm run lint` - Run linter (`oxlint`).
+- `npm run verify` — Full QA check: linter (`oxlint`), TypeScript type checks, test suite, and production build.
+- `npm run dev` — Run frontend and backend concurrently in dev mode with hot module reloading.
+- `npm run build` — Build both client and server production distributions.
+- `npm test` — Run the automated test suite (Vitest + Supertest).
+- `npm run typecheck` — Run TypeScript type checking on both `apps/web` and `apps/server`.
+- `npm run lint` — Run `oxlint` on frontend codebase.
+- `npm start` or `hiro` — Start the production desktop web app.
+
+---
+
+## ✨ Key Features
+
+- **4-Stage Kanban Board**: Ordered flow: *Applied* → *Test* → *Interview* → *Next Step* with drag-and-drop powered by `@dnd-kit`.
+- **Neumorphic & Desktop-First UI**: Soft lighting, tactile card interactions, and Nunito Sans typography.
+- **Audit History**: Every stage transition records timestamps and trigger sources (`MANUAL` or `GMAIL`).
+- **Smart Gmail Sync**: Optional read-only recruitment email synchronization that extracts assessment tests and interview invites into reviewable suggestions. Ambiguous emails are never updated silently.
+- **Local Authentication**: Single-user password protection with bcrypt/argon2 hashing, rate-limiting, and server-side sessions.
+- **Instant Data Export**: Download your records anytime in RFC 4180 CSV or structured JSON format.
 
 ---
 
 ## 💾 Database Backup & Restore
 
-Hiro stores all application data in a local SQLite database (`apps/server/prisma/dev.db`).
-
 ### 1. Manual Backup
-To create a safe snapshot of your data:
 
 **PowerShell (Windows):**
 ```powershell
-Copy-Item apps/server/prisma/dev.db "apps/server/prisma/backup-$(Get-Date -Format 'yyyyMMdd-HHmmss').db"
+Copy-Item "$HOME\.hiro\hiro.db" "$HOME\.hiro\backup-$(Get-Date -Format 'yyyyMMdd-HHmmss').db"
 ```
 
 **Bash (Linux / macOS):**
 ```bash
-cp apps/server/prisma/dev.db apps/server/prisma/backup-$(date +%Y%m%d-%H%M%S).db
+cp ~/.hiro/hiro.db ~/.hiro/backup-$(date +%Y%m%d-%H%M%S).db
 ```
 
 ### 2. Restoring from a Backup
-1. Stop the application server (`Ctrl + C`).
-2. Replace `apps/server/prisma/dev.db` with your backup copy:
+
+1. Stop Hiro (`Ctrl + C` in terminal).
+2. Overwrite `~/.hiro/hiro.db` with your backup copy:
    ```powershell
-   Copy-Item apps/server/prisma/backup-YYYYMMDD-HHMMSS.db apps/server/prisma/dev.db
+   Copy-Item "$HOME\.hiro\backup-YYYYMMDD-HHMMSS.db" "$HOME\.hiro\hiro.db"
    ```
-3. Restart the application (`npm start` or `npm run dev`).
+3. Run `hiro` again.
 
 ---
 
 ## 📤 Data Export (CSV & JSON)
 
-Hiro provides instant data export directly from the UI or via API:
+Hiro provides instant data portability:
 - **From UI**: Click **Export CSV** in the collapsible sidebar.
 - **Via API**:
   - `GET /api/internships/export?format=csv` — Downloads RFC 4180 compliant CSV file.
@@ -182,48 +145,40 @@ Hiro provides instant data export directly from the UI or via API:
 
 ---
 
-## 📬 Gmail Integration (Phase 7)
+## 📬 Gmail Integration (Optional)
 
-Hiro includes an intelligent, privacy-first Gmail synchronization engine to automatically detect recruitment stages (Online Assessments, Interview Invites, Offer Letters):
+Hiro includes an intelligent, privacy-first Gmail synchronization engine to automatically detect recruitment stages:
 
 ### 1. Google Cloud Setup
 1. Create a Google Cloud project at [console.cloud.google.com](https://console.cloud.google.com).
 2. Enable the **Gmail API**.
-3. Configure the OAuth Consent Screen and create an **OAuth 2.0 Web Client ID**:
+3. Configure OAuth Consent Screen and create an **OAuth 2.0 Web Client ID**:
    - Authorized redirect URI: `http://127.0.0.1:29200/api/gmail/callback`
-4. Add the credentials to your `.env` file:
+4. Configure credentials in `.env` (or in `~/.hiro/config.json`):
    ```env
    GOOGLE_CLIENT_ID="your-google-client-id"
    GOOGLE_CLIENT_SECRET="your-google-client-secret"
    GOOGLE_REDIRECT_URI="http://127.0.0.1:29200/api/gmail/callback"
-   GMAIL_TOKEN_ENCRYPTION_KEY="your-32-byte-hex-encryption-key" # Optional, defaults to hashed SESSION_SECRET
    ```
 
 ### 2. Privacy & Security Safeguards
-- **Narrowest Scope**: Only requests `https://www.googleapis.com/auth/gmail.readonly`.
+- **Narrowest Scope**: Requests only `https://www.googleapis.com/auth/gmail.readonly`.
 - **Encrypted at Rest**: Refresh tokens are encrypted with `AES-256-GCM` using `scryptSync` derived keys and stored strictly server-side.
-- **No Silent Updates**: Ambiguous matches or confidence < 65% are flagged for human review. Applications will never silently change status without user verification.
-- **Audit History**: Applying a recommendation atomically updates the Kanban card and writes a `StatusHistory` record with `source: GMAIL` and the associated email ID.
-- **Offline / Sandbox Simulation**: You can test recruitment detection at any time using the "Simulate Test Email Match" button in the Gmail modal without live Google credentials.
+- **No Silent Updates**: Ambiguous matches or confidence < 65% are flagged for manual review. Applications will never change status silently.
+- **Audit History**: Applying a recommendation updates the Kanban card and writes a `StatusHistory` record with `source: GMAIL`.
+- **Sandbox Simulation**: Test recruitment detection anytime using the "Simulate Test Email Match" button in the Gmail modal without live Google credentials.
 
 ---
 
 ## 🛠️ Troubleshooting
 
-- **Port 29200 already in use**: The launcher checks `http://127.0.0.1:29200/api/health` before starting to avoid duplicate processes. If a stale node process is holding port 29200, you can terminate it in PowerShell:
+- **Port 29200 already in use**: The launcher checks `http://127.0.0.1:29200/api/health` before starting. If an orphaned Node process is holding the port, terminate it in PowerShell:
   ```powershell
   Stop-Process -Id (Get-NetTCPConnection -LocalPort 29200).OwningProcess -Force
   ```
-- **Session invalid or expired**: If your session cookie expires, the application automatically redirects to the password unlock screen.
-- **Clean Database Reset**: To completely reinitialize the database (will delete all existing records):
-  ```bash
-  npx prisma migrate reset --schema=apps/server/prisma/schema.prisma
+- **Login loop / Session issues**: In production local mode, session cookies run over `http://127.0.0.1`. The server automatically uses non-secure cookies on loopback HTTP so your browser accepts and persists sessions.
+- **Reset Master Password / Clean DB**: If you forget your password and want a fresh start, delete the local database file:
+  ```powershell
+  Remove-Item "$HOME\.hiro\hiro.db"
   ```
-
----
-
-## Architecture Boundaries & Security
-
-- **Local-First & Single-User**: Bound to `127.0.0.1` by default.
-- **Backend Data Ownership**: Frontend communicates exclusively via backend REST API. Direct database access from the client is prohibited.
-- **Zero Secrets Committed**: All secret configurations and `.env` files are ignored by git.
+  The next time you type `hiro`, it will prompt for a fresh first-run password setup.
