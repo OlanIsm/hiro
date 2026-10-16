@@ -37,8 +37,8 @@ app.use(
 app.use(express.json());
 
 // Session configuration
-const isProd = process.env.NODE_ENV === "production";
 const sessionSecret = process.env.SESSION_SECRET || "olan-jira-dev-secret-12345";
+const isCookieSecure = process.env.COOKIE_SECURE === "true" || process.env.HTTPS === "true";
 
 app.use(
   session({
@@ -48,7 +48,7 @@ app.use(
     cookie: {
       httpOnly: true,
       sameSite: "lax",
-      secure: isProd, // true only behind HTTPS
+      secure: isCookieSecure, // true only behind HTTPS; false on local HTTP loopback
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     },
   })
