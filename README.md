@@ -8,23 +8,23 @@ Like Omniroute, Hiro is designed with **zero-setup convenience**: install once, 
 
 ## ⚡ Zero-Config Quick Start (Recommended)
 
-### 1. Installation
+### 1. Instant Run (No Clone Needed)
 
-You can install and link Hiro globally on your machine:
+You can launch Hiro directly via `npx` with zero installation:
 
 ```bash
-# Clone the repository
-git clone https://github.com/OlanIsm/hiro.git
-cd hiro
+npx hiro-tracker
+```
 
-# Install dependencies and link the global CLI binary
-npm install
-npm link
+Or install it globally to your system:
+
+```bash
+npm install -g hiro-tracker
 ```
 
 ### 2. Launch Anywhere
 
-Open any terminal (PowerShell, CMD, Bash, or Zsh) and run:
+Once installed, simply type `hiro` or `hiro-tracker` in any terminal:
 
 ```bash
 hiro
