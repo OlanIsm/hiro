@@ -34,6 +34,7 @@
     "LICENSE"
   ],
   "scripts": {
+    "postinstall": "npm run --workspace=apps/server prisma:generate",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:server": "npm run dev --workspace=apps/server",
