@@ -56,16 +56,33 @@ npm run --workspace=apps/server prisma:migrate
 
 ---
 
+## ⚡ Zero-Config Quick Start (Global `hiro` Command)
+
+Run Hiro instantly with zero manual setup. Database, migrations, secrets, and builds are provisioned automatically in `~/.hiro`:
+
+```bash
+# Link binary once (or install globally)
+npm link
+
+# Launch anywhere, anytime
+hiro
+```
+
+- **Zero-Setup Database**: Auto-provisions SQLite database at `~/.hiro/hiro.db` and deploys Prisma migrations automatically.
+- **Zero-Config Secrets**: Auto-generates and persists cryptographically random secrets in `~/.hiro/config.json`.
+- **Instant Browser Access**: Automatically launches your default browser at `http://127.0.0.1:29200`.
+- **Process Guard**: If Hiro is already active, typing `hiro` opens the existing tab instead of creating duplicate processes.
+
+---
+
 ## 🚀 Local Launcher (Production Mode)
 
 To start Olan's Jira as a self-contained local desktop web app:
 
 ```bash
 npm start
-```
-or:
-```bash
-node scripts/launcher.mjs
+# or:
+hiro
 ```
 
 ### Windows Shell Alias / Command (`olan's jira`)

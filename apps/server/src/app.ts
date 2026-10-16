@@ -70,9 +70,12 @@ app.use("/api/gmail", requireAuth, gmailRouter);
 
 // Serve built frontend in production / local launcher mode
 const candidatePaths = [
+  process.env.STATIC_PATH,
+  path.resolve(__dirname, "../../web/dist"),
+  path.resolve(__dirname, "../../../apps/web/dist"),
   path.resolve(process.cwd(), "../web/dist"),
   path.resolve(process.cwd(), "apps/web/dist"),
-];
+].filter(Boolean) as string[];
 const frontendDistPath = candidatePaths.find((p) => fs.existsSync(p));
 
 if (frontendDistPath) {

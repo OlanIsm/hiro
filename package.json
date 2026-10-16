@@ -5,13 +5,18 @@
   "workspaces": [
     "apps/*"
   ],
+  "bin": {
+    "hiro": "./bin/hiro.js",
+    "olans-jira": "./bin/hiro.js"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:server": "npm run dev --workspace=apps/server",
     "build": "npm run build --workspaces",
-    "start": "node scripts/launcher.mjs",
-    "olan's-jira": "node scripts/launcher.mjs",
+    "start": "node bin/hiro.js",
+    "hiro": "node bin/hiro.js",
+    "olan's-jira": "node bin/hiro.js",
     "test": "npm run test --workspace=apps/server",
     "typecheck": "npm run typecheck --workspace=apps/web && npm run typecheck --workspace=apps/server",
     "lint": "npm run lint --workspace=apps/web",
