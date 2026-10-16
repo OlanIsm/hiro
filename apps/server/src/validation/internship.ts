@@ -73,5 +73,10 @@ export const InternshipIdParamSchema = z.object({
   id: z.string().uuid("Invalid internship ID format (must be a valid UUID)"),
 });
 
+export const ImportInternshipsSchema = z.object({
+  items: z.array(CreateInternshipSchema).min(1, "At least one internship is required to import"),
+});
+
 export type CreateInternshipInput = z.infer<typeof CreateInternshipSchema>;
 export type UpdateInternshipInput = z.infer<typeof UpdateInternshipSchema>;
+export type ImportInternshipsInput = z.infer<typeof ImportInternshipsSchema>;

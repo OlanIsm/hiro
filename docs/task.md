@@ -182,7 +182,7 @@ credentials safely.
 -   [ ] Gmail push notifications through Gmail `watch` and Google Cloud
     Pub/Sub.
 -   [ ] Deadline reminders.
--   [ ] CSV/JSON import and export.
+-   [x] CSV/JSON import and export.
 -   [ ] Backup and restore UI.
 -   [ ] Additional application analytics.
 

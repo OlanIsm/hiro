@@ -270,5 +270,51 @@ describe("Internship API & Status History (Phase 1)", () => {
       expect(res.text).toContain("Microsoft");
       expect(res.text).toContain("Google");
     });
+
+    it("should batch import applications from items array", async () => {
+      const importPayload = {
+        items: [
+          {
+            companyName: "Stripe",
+            role: "Backend Intern",
+            status: "APPLIED",
+            skills: ["Ruby", "Go"],
+            notes: "Imported via CSV/JSON",
+          },
+          {
+            companyName: "Airbnb",
+            role: "Fullstack Intern",
+            status: "INTERVIEW",
+            skills: ["React", "Node.js"],
+            notes: "Direct referral",
+          },
+        ],
+      };
+
+      const res = await agent.post("/api/internships/import").send(importPayload);
+      expect(res.status).toBe(201);
+      expect(res.body.data.count).toBe(2);
+      expect(res.body.data.imported).toHaveLength(2);
+      expect(res.body.data.imported[0].companyName).toBe("Stripe");
+      expect(res.body.data.imported[1].companyName).toBe("Airbnb");
+
+      // Verify status history was created with source IMPORT
+      const stripeId = res.body.data.imported[0].id;
+      const historyRes = await agent.get(`/api/internships/${stripeId}/history`);
+      expect(historyRes.status).toBe(200);
+      expect(historyRes.body.data[0].source).toBe("IMPORT");
+    });
+
+    it("should reject batch import with empty items array", async () => {
+      const res = await agent.post("/api/internships/import").send({ items: [] });
+      expect(res.status).toBe(400);
+    });
+
+    it("should reject batch import with invalid internship fields", async () => {
+      const res = await agent
+        .post("/api/internships/import")
+        .send({ items: [{ companyName: "", role: "" }] });
+      expect(res.status).toBe(400);
+    });
   });
 });

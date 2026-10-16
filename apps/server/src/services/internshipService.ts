@@ -151,6 +151,14 @@ export class InternshipService {
 
     return this.repo.findHistoryByInternshipId(id);
   }
+
+  async importInternships(items: CreateInternshipInput[]): Promise<{ count: number; imported: FormattedInternship[] }> {
+    const created = await this.repo.importMany(items);
+    return {
+      count: created.length,
+      imported: created.map(formatInternship),
+    };
+  }
 }
 
 export const internshipService = new InternshipService();

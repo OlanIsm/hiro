@@ -7,6 +7,7 @@ import {
   LogOut,
   Sparkles,
   Download,
+  Upload,
   Mail,
 } from "lucide-react";
 
@@ -15,6 +16,7 @@ interface SidebarProps {
   onToggle: () => void;
   onLogout: () => void;
   onOpenGmailSync?: () => void;
+  onOpenImport?: () => void;
   pendingRecsCount?: number;
 }
 
@@ -23,6 +25,7 @@ export function Sidebar({
   onToggle,
   onLogout,
   onOpenGmailSync,
+  onOpenImport,
   pendingRecsCount = 0,
 }: SidebarProps) {
   return (
@@ -285,6 +288,30 @@ export function Sidebar({
           >
             <History size={19} />
             {isExpanded && <span>History</span>}
+          </button>
+
+          {/* Import CSV / JSON Data */}
+          <button
+            onClick={onOpenImport}
+            className="neu-button"
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: isExpanded ? "flex-start" : "center",
+              gap: "12px",
+              padding: isExpanded ? "10px 14px" : "10px 0",
+              border: "none",
+              borderRadius: "14px",
+              color: "#6d28d9",
+              fontWeight: "600",
+              fontSize: "14px",
+              cursor: "pointer",
+            }}
+            title="Import Applications (CSV/JSON)"
+          >
+            <Upload size={19} />
+            {isExpanded && <span>Import Data</span>}
           </button>
 
           {/* Export CSV Data */}

@@ -5,6 +5,7 @@ import {
   CreateInternshipSchema,
   UpdateInternshipSchema,
   InternshipIdParamSchema,
+  ImportInternshipsSchema,
 } from "../validation/internship.js";
 
 export const internshipRouter = Router();
@@ -41,6 +42,23 @@ internshipRouter.get(
       res.setHeader("Content-Type", contentType);
       res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
       res.send(content);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// POST /api/internships/import - Batch import applications
+internshipRouter.post(
+  "/import",
+  validateBody(ImportInternshipsSchema),
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const result = await internshipService.importInternships(req.body.items);
+      res.status(201).json({
+        message: `Successfully imported ${result.count} applications`,
+        data: result,
+      });
     } catch (error) {
       next(error);
     }

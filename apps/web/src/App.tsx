@@ -3,6 +3,7 @@ import { AuthProvider } from "./features/auth/AuthContext";
 import { useAuth } from "./features/auth/useAuth";
 import { LoginScreen } from "./features/auth/LoginScreen";
 import { KanbanBoard } from "./features/internships/components/KanbanBoard";
+import { ImportModal } from "./features/internships/components/ImportModal";
 import { Sidebar } from "./components/Sidebar";
 import { GmailSyncModal } from "./features/gmail/GmailSyncModal";
 import { LayoutDashboard, LogOut, Mail } from "lucide-react";
@@ -13,6 +14,7 @@ function Dashboard() {
   const { logout } = useAuth();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const [isGmailModalOpen, setIsGmailModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [pendingRecsCount, setPendingRecsCount] = useState(0);
   const [boardRefreshKey, setBoardRefreshKey] = useState(0);
 
@@ -55,6 +57,7 @@ function Dashboard() {
         onToggle={() => setIsSidebarExpanded((prev) => !prev)}
         onLogout={logout}
         onOpenGmailSync={() => setIsGmailModalOpen(true)}
+        onOpenImport={() => setIsImportModalOpen(true)}
         pendingRecsCount={pendingRecsCount}
       />
 
@@ -214,6 +217,13 @@ function Dashboard() {
           setBoardRefreshKey((prev) => prev + 1);
           fetchPendingRecs();
         }}
+      />
+
+      {/* Phase 8 Batch Import Modal */}
+      <ImportModal
+        isOpen={isImportModalOpen}
+        onClose={() => setIsImportModalOpen(false)}
+        onRefreshBoard={() => setBoardRefreshKey((prev) => prev + 1)}
       />
     </div>
   );

@@ -127,6 +127,41 @@ export class InternshipRepository {
       orderBy: { changedAt: "desc" },
     });
   }
+
+  async importMany(items: CreateInternshipInput[]): Promise<Internship[]> {
+    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      const createdList: Internship[] = [];
+      for (const data of items) {
+        const skillsJson = JSON.stringify(data.skills || []);
+        const internship = await tx.internship.create({
+          data: {
+            companyName: data.companyName,
+            role: data.role,
+            jobDescription: data.jobDescription,
+            skills: skillsJson,
+            status: data.status,
+            appliedAt: data.appliedAt || new Date(),
+            jobUrl: data.jobUrl,
+            recruiterEmail: data.recruiterEmail,
+            notes: data.notes,
+            nextAction: data.nextAction,
+            deadline: data.deadline,
+          },
+        });
+
+        await tx.statusHistory.create({
+          data: {
+            internshipId: internship.id,
+            previousStatus: null,
+            newStatus: internship.status,
+            source: "IMPORT",
+          },
+        });
+        createdList.push(internship);
+      }
+      return createdList;
+    });
+  }
 }
 
 export const internshipRepository = new InternshipRepository();
