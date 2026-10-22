@@ -2,7 +2,7 @@
 
 import http from "node:http";
 import net from "node:net";
-import { spawn, spawnSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import path from "node:path";
 import fs from "node:fs";
 import os from "node:os";
@@ -225,15 +225,35 @@ async function main() {
   }
 
   if (fs.existsSync(prismaCli) && fs.existsSync(schemaPath)) {
-    const migrateResult = spawnSync(
-      process.execPath,
-      [prismaCli, "migrate", "deploy", `--schema=${schemaPath}`],
-      {
-        env: { ...process.env, DATABASE_URL: dbUrl },
-        stdio: "pipe",
-        encoding: "utf8",
-      }
-    );
+    const migrateResult = await new Promise((resolve) => {
+      const proc = spawn(
+        process.execPath,
+        [prismaCli, "migrate", "deploy", `--schema=${schemaPath}`],
+        {
+          env: { ...process.env, DATABASE_URL: dbUrl },
+          stdio: "pipe",
+        }
+      );
+
+      let stdout = "";
+      let stderr = "";
+
+      proc.stdout?.on("data", (chunk) => {
+        stdout += chunk.toString();
+      });
+
+      proc.stderr?.on("data", (chunk) => {
+        stderr += chunk.toString();
+      });
+
+      proc.on("close", (code) => {
+        resolve({ status: code ?? 0, stdout, stderr });
+      });
+
+      proc.on("error", (err) => {
+        resolve({ status: 1, stdout, stderr: err.message });
+      });
+    });
 
     if (migrateResult.status !== 0) {
       spinner.warn("Database migration notice: " + (migrateResult.stderr || migrateResult.stdout).trim());
@@ -247,13 +267,23 @@ async function main() {
 
   if (!fs.existsSync(webDist) || !fs.existsSync(serverDist)) {
     spinner.update("Building production assets (one-time setup, please wait)...");
-    const buildProc = spawnSync(
-      process.platform === "win32" ? "npm.cmd" : "npm",
-      ["run", "build"],
-      { cwd: ROOT_DIR, stdio: "inherit" }
-    );
+    const buildResult = await new Promise((resolve) => {
+      const proc = spawn(
+        process.platform === "win32" ? "npm.cmd" : "npm",
+        ["run", "build"],
+        { cwd: ROOT_DIR, stdio: "ignore" }
+      );
 
-    if (buildProc.status !== 0) {
+      proc.on("close", (code) => {
+        resolve(code ?? 0);
+      });
+
+      proc.on("error", () => {
+        resolve(1);
+      });
+    });
+
+    if (buildResult !== 0) {
       spinner.fail("Build failed.");
       process.exit(1);
     }

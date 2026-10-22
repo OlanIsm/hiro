@@ -1,6 +1,6 @@
 {
   "name": "hiro-tracker",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Private, single-user, local-first internship application tracker with a 4-stage Kanban workflow and zero-setup CLI",
   "author": "Olan",
   "license": "MIT",
